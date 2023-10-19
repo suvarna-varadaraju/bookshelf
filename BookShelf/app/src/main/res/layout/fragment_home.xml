@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.home.HomeFragment">
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.book.CardView.Background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp8"
+            android:fillViewport="true">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dp10"
+                android:clipChildren="false"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp8">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_dark_theme"
+                    style="@style/Widget.book.CardView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:elevation="@dimen/dp4"
+                    android:padding="@dimen/dp10"
+                    app:cardCornerRadius="@dimen/dp36"
+                    app:cardElevation="@dimen/dp4"
+                    app:strokeColor="#E5E5E5">
+
+                    <RelativeLayout
+                        style="@style/Widget.book.TextInputLayoutOutlinedWhiteBg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableTint="@color/white"
+                        android:background="@color/white">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.book.TextInputLayoutOutlinedWhiteBg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toStartOf="@+id/imageMarketPlaceFilter">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_search_query"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,-_"
+                                android:drawableStart="@drawable/ic_search"
+                                android:drawableEnd="@drawable/ic_close"
+                                android:drawablePadding="@dimen/dp16"
+                                android:drawableTint="#A19F9F"
+                                android:hint="Search Books"
+                                android:imeOptions="actionDone"
+                                android:inputType="textCapSentences"
+                                android:lines="1"
+                                android:maxLines="1"
+                                android:paddingRight="@dimen/dp30"
+                                android:singleLine="true"
+                                android:textSize="@dimen/dp14" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <ImageView
+                            android:id="@+id/imageMarketPlaceFilter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/dp8"
+                            android:visibility="gone"
+                            app:tint="@color/buttonBackground" />
+
+                    </RelativeLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_listing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:elevation="@dimen/dp24"
+                    android:nestedScrollingEnabled="false"
+                    tools:itemCount="4"
+                    tools:listitem="@layout/list_item_view_book_listings" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.core.widget.NestedScrollView>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressBar"
+        style="@style/Widget.Material3.CircularProgressIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:elevation="@dimen/dp4"/>
+
+    <FrameLayout
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:elevation="@dimen/dp10"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
