@@ -241,7 +241,7 @@
         android:layout_marginTop="90dp"
         android:elevation="@dimen/dp4">
 
-        <com.android.bookshelf.ui.camera.CircleImageView
+        <com.android.almufeed.ui.camera.CircleImageView
             android:id="@+id/profile_image"
             android:layout_width="108dp"
             android:layout_height="108dp"
@@ -250,7 +250,7 @@
             app:civ_border_overlay="true"
             app:civ_border_width="@dimen/dp4" />
 
-        <com.android.bookshelf.ui.camera.CircleImageView
+        <com.android.almufeed.ui.camera.CircleImageView
             android:id="@+id/image_button_pick_image"
             android:layout_width="35dp"
             android:layout_height="35dp"

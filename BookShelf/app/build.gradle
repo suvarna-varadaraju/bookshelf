@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace 'com.android.bookshelf'
+    namespace 'com.android.almufeed'
     compileSdk rootProject.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.android.bookshelf"
+        applicationId "com.android.almufeed"
         minSdk rootProject.minSdkVersion
         targetSdk rootProject.targetSdkVersion
         versionCode 1
