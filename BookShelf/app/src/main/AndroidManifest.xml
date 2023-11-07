@@ -18,17 +18,38 @@
 
     <application
         android:name=".BookShelfApplication"
-        android:allowBackup="false"
+        android:allowBackup="true"
         android:icon="@drawable/almf_02"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.BookShelf.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.home.TaskActivity"
+            android:name=".ui.home.SignaturePadActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.DocumentsActivity"
+            android:name=".ui.home.RatingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.AddAttachmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.ProofOfAttendence"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.RiskAssessment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.TaskDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.DocumentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.PDFVIew"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.TaskActivity"
             android:exported="false" />
         <activity
             android:name=".ui.launchpad.DashboardActivity"
@@ -76,5 +97,4 @@
             android:exported="false"
             android:screenOrientation="portrait" />
     </application>
-
 </manifest>

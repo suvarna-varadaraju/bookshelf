@@ -33,13 +33,11 @@ object CacheModule {
     @Provides
     fun provideBlogDAO(bookDatabase: BookDatabase) = bookDatabase.bookDao()
 
-
     @Singleton
     @Provides
     fun provideBlogDaoService(agriDao: BookDao): BookDaoService {
         return BookDaoServiceImpl(agriDao)
     }
-
 }
 
 

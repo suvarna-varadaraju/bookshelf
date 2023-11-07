@@ -19,27 +19,17 @@
             android:gravity="center_horizontal"
             android:text="Dashboard"
             android:textColor="@color/purple_500"
-            android:textSize="24dp"
-            app:fontFamily="@font/montserrat_semibold" />
-
-        <!--<androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/inc_toolbar_with_center_logo_image"
-            android:layout_width="wrap_content"
-            android:contentDescription="@string/content_description_logo"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginRight="10dp"
-            android:visibility="gone"
-            android:src="@drawable/ec_download"/>
+            android:textSize="28dp"
+            app:fontFamily="@font/montserrat_semibold"/>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/inc_toolbar_image"
             android:layout_width="24dp"
-            android:contentDescription="@string/content_description_logo"
             android:layout_height="24dp"
             android:layout_gravity="start"
             android:visibility="gone"
-            android:src="@drawable/icon_actionbar_backbutton" />-->
+            android:padding="@dimen/dp10"
+            android:src="@drawable/icon_actionbar_backbutton" />
 
     </androidx.appcompat.widget.Toolbar>
 </com.google.android.material.appbar.AppBarLayout>

@@ -5,14 +5,13 @@ import com.google.gson.annotations.SerializedName
 
 data class BookListNetworkResponse(
 
-    @SerializedName("items")
+    @SerializedName("status")
     @Expose
-    val `items`: List<BookData>,
-    @SerializedName("kind")
+    val status: String,
+    @SerializedName("message")
     @Expose
-    val kind: String,
-    @SerializedName("totalItems")
+    val message: String,
+    @SerializedName("task")
     @Expose
-    val totalItems: Int
-
+    val task: ArrayList<BookData>,
 )

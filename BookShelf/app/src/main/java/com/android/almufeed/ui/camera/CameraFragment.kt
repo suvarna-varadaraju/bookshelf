@@ -1,19 +1,3 @@
-/*
- * Copyright 2020 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.android.almufeed.ui.camera
 
 import android.app.Activity
@@ -40,11 +24,8 @@ import java.util.concurrent.Executors
 class CameraFragment : Fragment() {
 
     private var _fragmentCameraBinding: FragmentCameraBinding? = null
-
     private val fragmentCameraBinding get() = _fragmentCameraBinding!!
-
     private lateinit var outputDirectory: File
-
     private var preview: Preview? = null
     private var imageCapture: ImageCapture? = null
     private var imageAnalyzer: ImageAnalysis? = null
@@ -52,7 +33,6 @@ class CameraFragment : Fragment() {
     private var cameraProvider: ProcessCameraProvider? = null
     private var lensFacing: Int = CameraSelector.LENS_FACING_BACK
     private val viewModel: CameraViewModel by viewModels()
-
     private lateinit var cameraExecutor: ExecutorService
 
     override fun onDestroyView() {
@@ -84,7 +64,6 @@ class CameraFragment : Fragment() {
             buttonAccept.setOnClickListener {
                 returnImage()
             }
-
         }
 
         fragmentCameraBinding.viewFinder.post {

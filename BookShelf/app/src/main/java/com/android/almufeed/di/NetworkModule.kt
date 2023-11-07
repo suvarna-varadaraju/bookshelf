@@ -7,7 +7,6 @@ import com.android.almufeed.business.domain.state.ErrorUtils
 import com.android.almufeed.business.domain.utils.networkException.ConnectivityInterceptor
 import com.android.almufeed.datasource.network.BookRetrofitService
 import com.android.almufeed.datasource.network.BookRetrofitServiceImpl
-import com.android.almufeed.datasource.network.mappers.BookListMapper
 import com.android.almufeed.datasource.network.retrofit.BookWebServices
 import com.android.almufeed.BuildConfig
 import com.google.gson.Gson
@@ -83,11 +82,9 @@ object NetworkModule {
     @Provides
     fun provideBookNetworkDataSource(
         bookRetrofitService: BookRetrofitService,
-        bookListMapper: BookListMapper
     ): BookNetworkDataSource {
         return BookNetworkDataSourceImpl(
-            bookRetrofitService,
-            bookListMapper
+            bookRetrofitService
         )
     }
 

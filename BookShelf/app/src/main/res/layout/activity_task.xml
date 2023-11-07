@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.DocumentsActivity">
+    tools:context=".ui.home.TaskActivity">
 
     <include
         layout="@layout/activity_toolbar"
@@ -14,11 +14,11 @@
         android:layout_height="?attr/actionBarSize"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerFavourites"
+        android:id="@+id/recyclerTask"
         android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp10" />
+        android:layout_marginTop="@dimen/dp10"/>
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progressBar"
@@ -35,6 +35,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dp10"/>
-
 
 </RelativeLayout>

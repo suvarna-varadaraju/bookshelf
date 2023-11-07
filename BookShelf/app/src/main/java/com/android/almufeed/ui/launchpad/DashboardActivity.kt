@@ -4,7 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.android.almufeed.databinding.ActivityDashboardBinding
-import com.android.almufeed.ui.home.DocumentsActivity
+import com.android.almufeed.ui.home.DocumentActivity
+import com.android.almufeed.ui.home.PDFVIew
 import com.android.almufeed.ui.home.TaskActivity
 
 class DashboardActivity : AppCompatActivity() {
@@ -18,7 +19,7 @@ class DashboardActivity : AppCompatActivity() {
         binding.apply {
 
             txtDoc.setOnClickListener {
-                Intent(this@DashboardActivity, DocumentsActivity::class.java).apply {
+                Intent(this@DashboardActivity, DocumentActivity::class.java).apply {
                     startActivity(this)
                 }
             }

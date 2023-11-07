@@ -9,17 +9,16 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.room.Room
 import com.android.almufeed.R
-import com.android.almufeed.business.domain.model.bookModel.BookInfo
 import com.android.almufeed.databinding.ActivityDescriptionBinding
 import com.android.almufeed.datasource.cache.database.BookDatabase
 import com.android.almufeed.datasource.cache.database.BookDatabase.Companion.DATABASE_NAME
 import com.android.almufeed.datasource.cache.models.book.BookEntity
+import com.android.almufeed.datasource.network.models.bookList.BookData
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_description.*
 
 class DescriptionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDescriptionBinding
-    private lateinit var bookDetails: BookInfo
+    private lateinit var bookDetails: BookData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +38,7 @@ class DescriptionActivity : AppCompatActivity() {
             Toast.makeText(this@DescriptionActivity, "Some error occurred!", Toast.LENGTH_SHORT)
                 .show()
         }
-        binding.apply {
+       /* binding.apply {
             Glide.with(binding.root.context)
                 .load(bookDetails.volumeInfo.imageLinks?.thumbnail)
                 .into(binding.imgDescBookImage)
@@ -127,7 +126,7 @@ class DescriptionActivity : AppCompatActivity() {
                     }
                 }
             }
-        }
+        }*/
     }
 
 
@@ -147,7 +146,7 @@ class DescriptionActivity : AppCompatActivity() {
 
             when (mode) {
                 1 -> {
-                    val book: BookEntity? = db.bookDao().getBookById(bookEntity.book_id.toString())
+                    val book: BookEntity? = db.bookDao().getBookById(bookEntity.book_id)
                     db.close()
                     return book != null
                 }

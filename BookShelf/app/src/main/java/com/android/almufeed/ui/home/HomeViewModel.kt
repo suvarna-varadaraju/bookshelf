@@ -5,11 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import com.android.almufeed.business.domain.model.bookModel.BookInfo
+import com.android.almufeed.business.domain.state.DataState
 import com.android.almufeed.business.domain.utils.exhaustive
 import com.android.almufeed.business.repository.BookInfoRepository
+import com.android.almufeed.datasource.network.models.bookList.BookData
+import com.android.almufeed.datasource.network.models.bookList.BookListNetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
@@ -26,9 +26,7 @@ class HomeViewModel @Inject constructor(
     private val taskEventChannel = Channel<TaskEvent>()
     val taskEvent = taskEventChannel.receiveAsFlow()
 
-    private val _topupDataStateApp: MutableLiveData<PagingData<BookInfo>> = MutableLiveData()
-    val topupDataStateApp: LiveData<PagingData<BookInfo>>
-        get() = _topupDataStateApp
+    private val _topupDataStateApp: MutableLiveData<DataState<BookListNetworkResponse>> = MutableLiveData()
 
     private fun setStateEvent(state: MarketState) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -38,7 +36,7 @@ class HomeViewModel @Inject constructor(
                     bookInfoRepository.getAllBooks(
                         state.searchValue,
                         "AIzaSyAjcruS4knXbzq_3HkQtd2k5DZhP5gVWVc"
-                    ).cachedIn(viewModelScope).onEach {
+                    ).onEach {
                         _topupDataStateApp.value = it
                     }.launchIn(viewModelScope)
                 }
@@ -50,10 +48,9 @@ class HomeViewModel @Inject constructor(
         setStateEvent(MarketState.GetMyList(searchValue))
     }
 
-    fun setMyList(list: List<BookInfo>) = viewModelScope.launch {
+    fun setMyList(list: List<BookData>) = viewModelScope.launch {
         taskEventChannel.send(TaskEvent.SetMyList(list))
     }
-
 }
 
 sealed class MarketState {
@@ -61,5 +58,5 @@ sealed class MarketState {
 }
 
 sealed class TaskEvent {
-    data class SetMyList(val list: List<BookInfo>): TaskEvent()
+    data class SetMyList(val list: List<BookData>): TaskEvent()
 }

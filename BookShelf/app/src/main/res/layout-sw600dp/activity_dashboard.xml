@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.DocumentsActivity">
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.launchpad.DashboardActivity">
 
     <include
         layout="@layout/activity_toolbar"
@@ -16,6 +16,7 @@
     <com.google.android.material.card.MaterialCardView
         style="@style/Widget.book.CardView.outline"
         android:id="@+id/card1"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
@@ -31,50 +32,34 @@
             android:layout_below="@+id/toolbar">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/txt_pdf1"
+                android:id="@+id/txt_doc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="14dp"
+                android:textSize="18dp"
                 android:layout_margin="4dp"
                 android:textColor="@color/black"
-                android:textAllCaps="false"
                 android:background="@drawable/nav_background"
-                android:text="TBT on how to look professional at the workplace"
+                android:text="DOCUMENTS"
                 android:padding="4dp"
                 app:fontFamily="@font/montserrat">
 
             </androidx.appcompat.widget.AppCompatButton>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/txt_pdf2"
+                android:id="@+id/txt_activity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/black"
-                android:textSize="14dp"
+                android:textSize="18dp"
                 android:padding="4dp"
                 android:layout_margin="4dp"
-                android:textAllCaps="false"
-                android:text="TBT on customer service during PPM"
+                android:text="ACTIVITES"
                 android:background="@drawable/nav_background"
-                app:fontFamily="@font/montserrat"/>
+                app:fontFamily="@font/montserrat">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/txt_pdf3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textSize="14dp"
-                    android:layout_margin="4dp"
-                    android:textAllCaps="false"
-                    android:textColor="@color/black"
-                    android:background="@drawable/nav_background"
-                    android:text="PPM Training"
-                    android:padding="4dp"
-                    app:fontFamily="@font/montserrat"/>
-
+            </androidx.appcompat.widget.AppCompatButton>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-
 </RelativeLayout>

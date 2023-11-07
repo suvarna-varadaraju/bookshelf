@@ -10,7 +10,6 @@ import java.io.File
 
 @AndroidEntryPoint
 class CameraActivity : BaseActivity() {
-
     companion object {
         const val IMAGE_URI: String = "ImageUri"
         fun getOutputDirectory(context: Context): File {
@@ -35,7 +34,6 @@ class CameraActivity : BaseActivity() {
             actionBar.setHomeAsUpIndicator(R.drawable.icon_actionbar_backbutton)
             actionBar.setDisplayHomeAsUpEnabled(true)
         }
-
     }
 
     override fun showNetworkSnackBar(isNetworkAvailable: Boolean) {
