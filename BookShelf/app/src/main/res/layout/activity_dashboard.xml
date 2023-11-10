@@ -42,7 +42,7 @@
                 android:background="@drawable/nav_background"
                 android:text="DOCUMENTS"
                 android:padding="4dp"
-                app:fontFamily="@font/montserrat">
+                app:fontFamily="@font/montserrat_medium">
 
             </androidx.appcompat.widget.AppCompatButton>
 
@@ -57,7 +57,7 @@
                 android:layout_margin="4dp"
                 android:text="ACTIVITES"
                 android:background="@drawable/nav_background"
-                app:fontFamily="@font/montserrat">
+                app:fontFamily="@font/montserrat_medium">
 
             </androidx.appcompat.widget.AppCompatButton>
         </LinearLayout>

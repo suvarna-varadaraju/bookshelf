@@ -3,14 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-feature android:name="android.hardware.camera.any" />
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
-
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
@@ -24,6 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookShelf.NoActionBar"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.home.CheckListActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.home.SignaturePadActivity"
             android:exported="false" />
@@ -97,4 +97,5 @@
             android:exported="false"
             android:screenOrientation="portrait" />
     </application>
+
 </manifest>

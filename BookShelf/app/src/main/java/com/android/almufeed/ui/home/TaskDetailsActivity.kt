@@ -37,6 +37,11 @@ class TaskDetailsActivity : AppCompatActivity(){
             currentStatus.setTextColor(resources.getColor(R.color.green))
             btnAccept.setBackgroundColor(resources.getColor(R.color.primary))
             btnAccept.setText("Add Instruction Steps")
+        }else if(currentAvailableStatus == "Add Pictures"){
+            currentStatus.setText("Started")
+            currentStatus.setTextColor(resources.getColor(R.color.green))
+            btnAccept.setBackgroundColor(resources.getColor(R.color.primary))
+            btnAccept.setText("Add Pictures")
         }
         backPress.setOnClickListener (View.OnClickListener { view ->
             this@TaskDetailsActivity.onBackPressedDispatcher.onBackPressed()
@@ -47,20 +52,21 @@ class TaskDetailsActivity : AppCompatActivity(){
             if(btnAccept.text == "Accept"){
                 currentStatus.setText("Accepted")
                 currentStatus.setTextColor(resources.getColor(R.color.green))
-                btnAccept.setText("Onsite")
-            }else if(btnAccept.text == "Onsite"){
-                val intent = Intent(this@TaskDetailsActivity, ProofOfAttendence::class.java)
-                intent.putExtra("taskid", taskId)
-                startActivity(intent)
+                btnAccept.setBackgroundColor(resources.getColor(R.color.primary))
+                btnAccept.setText("Proof Of Attendence")
             }else if(btnAccept.text == "Proof Of Attendence"){
                 val intent = Intent(this@TaskDetailsActivity, ProofOfAttendence::class.java)
                 intent.putExtra("taskid", taskId)
                 startActivity(intent)
             }else if(btnAccept.text == "Add Instruction Steps"){
-            val intent = Intent(this@TaskDetailsActivity, RatingActivity::class.java)
+            val intent = Intent(this@TaskDetailsActivity, CheckListActivity::class.java)
             intent.putExtra("taskid", taskId)
             startActivity(intent)
-        }
+        }else if(btnAccept.text == "Add Pictures"){
+                val intent = Intent(this@TaskDetailsActivity, AddAttachmentActivity::class.java)
+                intent.putExtra("taskid", taskId)
+                startActivity(intent)
+            }
         })
 
         currentStatus.setOnClickListener(View.OnClickListener { view ->

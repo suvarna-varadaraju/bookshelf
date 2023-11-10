@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.home.TaskDetailsActivity">
 
     <include
@@ -13,7 +14,8 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/light_gray"
         android:layout_below="@+id/toolbar">
 
         <RelativeLayout
@@ -31,65 +33,65 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/toolbar"
                     android:text="Task Details"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/dp18">
+                    android:textSize="@dimen/dp16"
+                    app:fontFamily="@font/montserrat_medium">
                 </androidx.appcompat.widget.AppCompatTextView>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/txtTaskid"
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp10"
                     android:text="Task ID : TST:385"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
+                    app:fontFamily="@font/montserrat"
                     android:textSize="@dimen/dp14"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/txtscheduledate"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:text="Task Seq : 183040"
                     android:textAlignment="center"
+                    app:fontFamily="@font/montserrat"
                     android:textSize="@dimen/dp14"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/txtAttendDate"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Short Description : AC not cooling"
                     android:textAlignment="center"
                     android:textColor="#000000"
+                    app:fontFamily="@font/montserrat"
                     android:textSize="@dimen/dp14"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/txtbuilding"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Priority: Routine"
                     android:textAlignment="center"
                     android:textColor="@color/black"
+                    app:fontFamily="@font/montserrat"
                     android:textSize="@dimen/dp14"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/txtlocation"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Reported Date : 10/10/2023 08:51 AM"
                     android:textAlignment="center"
                     android:textColor="@color/black"
+                    app:fontFamily="@font/montserrat"
                     android:textSize="@dimen/dp14"/>
             </LinearLayout>
 
@@ -105,35 +107,35 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/toolbar"
                     android:text="Contact Details"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/dp18">
+                    app:fontFamily="@font/montserrat_medium"
+                    android:textSize="@dimen/dp16">
 
                 </androidx.appcompat.widget.AppCompatTextView>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/txt_contactname"
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp10"
                     android:text="Name : test name"
+                    app:fontFamily="@font/montserrat"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="@dimen/dp14" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/txt_number"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:text="Mobile: 0552347623"
+                    app:fontFamily="@font/montserrat"
                     android:textAlignment="center"
                     android:textSize="@dimen/dp14" />
 
@@ -151,10 +153,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Address"
+                    app:fontFamily="@font/montserrat_medium"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/dp18"
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    android:textSize="@dimen/dp16"
                     android:layout_below="@+id/toolbar">
 
                 </androidx.appcompat.widget.AppCompatTextView>
@@ -166,6 +168,7 @@
                     android:text="Building : Test building"
                     android:layout_marginTop="@dimen/dp10"
                     android:textAllCaps="false"
+                    app:fontFamily="@font/montserrat"
                     android:textColor="@color/black"
                     android:textSize="@dimen/dp14"
                     style="@style/TextAppearance.MaterialComponents.Subtitle1"/>
@@ -176,6 +179,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:text="Location : Test location"
+                    app:fontFamily="@font/montserrat"
                     android:textAlignment="center"
                     android:textSize="@dimen/dp14"
                     style="@style/TextAppearance.MaterialComponents.Body1"/>
@@ -195,8 +199,8 @@
                     android:text="SLA Targets"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/dp18"
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    android:textSize="@dimen/dp16"
+                    app:fontFamily="@font/montserrat_medium"
                     android:layout_below="@+id/toolbar">
 
                 </androidx.appcompat.widget.AppCompatTextView>
@@ -208,8 +212,8 @@
                     android:text="Attened Date : 10/10/2023 08:51 AM"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/dp14"
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1" />
+                    app:fontFamily="@font/montserrat"
+                    android:textSize="@dimen/dp14"/>
 
             </LinearLayout>
 
@@ -228,8 +232,7 @@
                     android:text="Current Status : "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/dp14"
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"/>
+                    android:textSize="@dimen/dp14"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/txt_action"
@@ -237,9 +240,8 @@
                     android:layout_height="wrap_content"
                     android:text="Pending"
                     android:textAllCaps="false"
-                    android:textColor="@color/light_gray"
-                    android:textSize="@dimen/dp18"
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"/>
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/dp16"/>
 
             </LinearLayout>
         </RelativeLayout>

@@ -40,4 +40,5 @@
     <string name="menu_profile" translatable="false">Profile</string>
     <string name="menu_description" translatable="false">Book Shelf</string>
     <string name="about_book" translatable="false">About the Book</string>
+    <string name="dialog_message" translatable="false">Please sign to confirm that all the works has been explained, carried out and completed by our technician to your satisfaction. Also please give your feedback by rating us to help improve our service delivery. Thank you!</string>
 </resources>

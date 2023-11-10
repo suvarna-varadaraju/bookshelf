@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
 import com.android.almufeed.R
 import com.android.almufeed.databinding.ActivityRatingBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -27,7 +28,7 @@ class RatingActivity : AppCompatActivity() {
         })
 
         binding.btnCustomer.setOnClickListener (View.OnClickListener { view ->
-            showSignatureDialog("customer")
+            showMessageDialog()
         })
 
         binding.btnTechnic.setOnClickListener (View.OnClickListener { view ->
@@ -58,7 +59,7 @@ class RatingActivity : AppCompatActivity() {
             mDialog.dismiss()
         }
 
-        btnSave?.setOnClickListener {
+        btnSave?.setOnClickListener{
             val bitmap: Bitmap = signatureView!!.getSignatureBitmap()
             if (bitmap != null) {
                 if(tag == "customer"){
@@ -71,6 +72,25 @@ class RatingActivity : AppCompatActivity() {
                     mDialog.dismiss()
                 }
             }
+        }
+    }
+
+    private fun showMessageDialog() {
+        val builder = AlertDialog.Builder(this)
+        // Create the AlertDialog
+        val alertDialog: AlertDialog = builder.create()
+        alertDialog.setCancelable(false)
+        alertDialog.show()
+
+        //builder.setTitle(R.string.dialogTitle)
+        //set message for alert dialog
+        builder.setMessage(R.string.dialog_message)
+        //builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+        //performing positive action
+        builder.setPositiveButton("OK"){dialogInterface, which ->
+            alertDialog.dismiss()
+            showSignatureDialog("customer")
         }
     }
 }

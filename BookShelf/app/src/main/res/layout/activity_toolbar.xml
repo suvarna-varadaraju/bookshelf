@@ -28,7 +28,7 @@
             android:layout_height="24dp"
             android:layout_gravity="start"
             android:visibility="gone"
-            android:padding="@dimen/dp10"
+            android:padding="@dimen/dp4"
             android:src="@drawable/icon_actionbar_backbutton" />
 
     </androidx.appcompat.widget.Toolbar>

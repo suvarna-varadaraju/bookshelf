@@ -42,7 +42,7 @@ tools:context=".ui.home.DocumentActivity">
             android:background="@drawable/nav_background"
             android:text="TBT on how to look professional at the workplace"
             android:padding="@dimen/dp10"
-            app:fontFamily="@font/montserrat">
+            app:fontFamily="@font/montserrat_medium">
 
         </androidx.appcompat.widget.AppCompatTextView>
 
@@ -63,7 +63,7 @@ tools:context=".ui.home.DocumentActivity">
             android:layout_margin="8dp"
             android:text="TBT on customer service during PPM"
             android:background="@drawable/nav_background"
-            app:fontFamily="@font/montserrat">
+            app:fontFamily="@font/montserrat_medium">
 
         </androidx.appcompat.widget.AppCompatTextView>
 
@@ -84,7 +84,7 @@ tools:context=".ui.home.DocumentActivity">
             android:layout_margin="8dp"
             android:text="PPM training"
             android:background="@drawable/nav_background"
-            app:fontFamily="@font/montserrat">
+            app:fontFamily="@font/montserrat_medium">
 
         </androidx.appcompat.widget.AppCompatTextView>
     </LinearLayout>
