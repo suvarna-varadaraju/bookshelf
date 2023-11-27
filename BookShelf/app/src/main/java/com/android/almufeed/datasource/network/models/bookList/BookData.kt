@@ -6,37 +6,89 @@ import com.google.gson.annotations.SerializedName
 data class BookData(
     @SerializedName("id")
     @Expose
-    val id: String,
+    val id: String?,
 
     @SerializedName("scheduledDate")
     @Expose
-    val scheduledDate: String,
+    val scheduledDate: String?,
 
     @SerializedName("attendDate")
     @Expose
-    val attendDate: String,
+    val attendDate: String?,
 
-    @SerializedName("building")
+    @SerializedName("TaskId")
     @Expose
-    val building: String,
+    val TaskId: String?,
 
-    @SerializedName("location")
+    @SerializedName("ServiceType")
     @Expose
-    val location: String,
+    val ServiceType: Int,
 
-    @SerializedName("type")
+    @SerializedName("CustAccount")
     @Expose
-    val type: String,
+    val CustAccount: String?,
 
-    @SerializedName("priority")
+    @SerializedName("Email")
     @Expose
-    val priority: String,
+    val Email: String?,
 
-    @SerializedName("problem")
+    @SerializedName("Building")
     @Expose
-    val problem: String,
+    val Building: String?,
 
-    @SerializedName("category")
+    @SerializedName("CustId")
     @Expose
-    val category: String,
+    val CustId: String?,
+
+    @SerializedName("CustName")
+    @Expose
+    val CustName: String?,
+
+    @SerializedName("Location")
+    @Expose
+    val Location: String?,
+
+    @SerializedName("Problem")
+    @Expose
+    val Problem: String?,
+
+    @SerializedName("Notes")
+    @Expose
+    val Notes: String?,
+
+    @SerializedName("LOC")
+    @Expose
+    val LOC: String?,
+
+    @SerializedName("Priority")
+    @Expose
+    val Priority: String?,
+
+    @SerializedName("Contract")
+    @Expose
+    val Contract: String?,
+
+    @SerializedName("Category")
+    @Expose
+    val Category: String?,
+
+    @SerializedName("Phone")
+    @Expose
+    val Phone: String?,
+
+    @SerializedName("Discipline")
+    @Expose
+    val Discipline: String?,
+
+    @SerializedName("CostCenter")
+    @Expose
+    val CostCenter: String?,
+
+    @SerializedName("Source")
+    @Expose
+    val Source: String?,
+
+    @SerializedName("Asset")
+    @Expose
+    val Asset: String?,
 )

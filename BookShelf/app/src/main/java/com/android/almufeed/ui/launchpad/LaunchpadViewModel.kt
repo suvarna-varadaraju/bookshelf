@@ -16,19 +16,6 @@ class LaunchpadViewModel @Inject constructor(
 
     private val taskEventChannel = Channel<TaskEvent>()
     val taskEvent = taskEventChannel.receiveAsFlow()
-
-    fun getPrefUserDetails() = viewModelScope.launch {
-        basePreferencesManager.getUserPreference().collect {
-            taskEventChannel.send(
-                TaskEvent.SetUserDetails(
-                    it.userName,
-                    it.userMobile,
-                    it.userEmail,
-                    it.userProfilePic
-                )
-            )
-        }
-    }
 }
 
 sealed class TaskEvent {

@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:weightSum="2"
     android:background="@color/light_gray"
+    android:id="@+id/lin_yesno"
     android:orientation="horizontal">
 
     <androidx.appcompat.widget.AppCompatButton

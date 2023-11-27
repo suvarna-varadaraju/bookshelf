@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/primary"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.launchpad.DashboardActivity">
 
@@ -14,22 +14,20 @@
         android:layout_height="?attr/actionBarSize"/>
 
     <com.google.android.material.card.MaterialCardView
-        style="@style/Widget.book.CardView.outline"
+        style="@style/Widget.book.CardView.Background"
         android:id="@+id/card1"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
-        android:layout_margin="10dp"
-        android:padding="10dp"
+        android:padding="30dp"
         app:strokeWidth="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/toolbar">
+            android:layout_marginTop="10dp">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/txt_doc"
@@ -42,7 +40,7 @@
                 android:background="@drawable/nav_background"
                 android:text="DOCUMENTS"
                 android:padding="4dp"
-                app:fontFamily="@font/montserrat_medium">
+                app:fontFamily="@font/montserrat_semibold">
 
             </androidx.appcompat.widget.AppCompatButton>
 
@@ -57,7 +55,7 @@
                 android:layout_margin="4dp"
                 android:text="ACTIVITES"
                 android:background="@drawable/nav_background"
-                app:fontFamily="@font/montserrat_medium">
+                app:fontFamily="@font/montserrat_semibold">
 
             </androidx.appcompat.widget.AppCompatButton>
         </LinearLayout>

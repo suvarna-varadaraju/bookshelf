@@ -5,7 +5,6 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_home">
 
-
     <activity
         android:id="@+id/nav_description"
         android:name="com.android.almufeed.ui.home.FavouritesActivity"

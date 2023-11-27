@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.AddAttachmentActivity">
+    android:background="@color/primary"
+    tools:context=".ui.home.attachment.AddAttachmentActivity">
 
     <include
         layout="@layout/activity_toolbar"
@@ -12,11 +13,19 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"/>
 
-    <androidx.core.widget.NestedScrollView
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.book.CardView.Background"
+        android:id="@+id/card1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
-        android:background="@color/light_gray">
+        android:layout_above="@+id/btn_save"
+        android:padding="30dp"
+        app:strokeWidth="0dp">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -29,7 +38,7 @@
                 android:layout_marginStart="@dimen/dp10"
                 android:layout_marginTop="@dimen/dp10"
                 android:layout_marginEnd="@dimen/dp10"
-                android:layout_marginBottom="@dimen/dp10"
+                android:layout_marginBottom="@dimen/dp4"
                 android:text="New Attachment"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
@@ -37,11 +46,20 @@
                 app:fontFamily="@font/montserrat_medium">
             </androidx.appcompat.widget.AppCompatTextView>
 
+            <View
+                android:id="@+id/view_divide"
+                android:layout_below="@+id/txt_title"
+                android:layout_width="100dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_gravity="start"
+                android:background="@color/purple_500"/>
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txt_title"
+                android:layout_below="@+id/view_divide"
                 android:layout_marginStart="@dimen/dp10"
                 android:layout_marginTop="@dimen/dp10"
                 android:layout_marginEnd="@dimen/dp10"
@@ -54,19 +72,28 @@
 
             </androidx.appcompat.widget.AppCompatTextView>
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <LinearLayout
+                android:id="@+id/lin_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_subtitle"
+                android:orientation="horizontal"
+                android:layout_margin="@dimen/dp10">
+            </LinearLayout>
+
+            <!--<androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/capture_image"
                 android:layout_width="match_parent"
                 android:layout_below="@id/txt_subtitle"
                 android:layout_margin="@dimen/dp10"
                 android:layout_height="wrap_content">
-            </androidx.appcompat.widget.AppCompatImageView>
+            </androidx.appcompat.widget.AppCompatImageView>-->
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/capture_image"
+                android:layout_below="@id/lin_image"
                 android:layout_marginStart="@dimen/dp10"
                 android:layout_marginTop="@dimen/dp10"
                 android:layout_marginEnd="@dimen/dp10"
@@ -186,10 +213,12 @@
                 android:layout_marginStart="@dimen/dp10"
                 android:layout_marginTop="@dimen/dp10"
                 android:layout_marginEnd="@dimen/dp10"
+                android:gravity="start"
+                android:inputType="textMultiLine"
                 android:padding="@dimen/dp4"
                 android:layout_marginBottom="@dimen/dp10"
                 android:background="@drawable/rectangle"
-                android:hint="Description"
+                android:hint=""
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dp16"
@@ -197,14 +226,18 @@
             </androidx.appcompat.widget.AppCompatEditText>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
+    </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.button.MaterialButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Save"
-        app:fontFamily="@font/montserrat_medium"
         android:layout_alignParentBottom="true"
-        app:textAllCaps="false"/>
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp14"
+        android:textAllCaps="false"
+        android:background="@drawable/nav_background_button"
+        android:text="Save"
+        app:fontFamily="@font/montserrat_semibold">
+    </androidx.appcompat.widget.AppCompatButton>
 </RelativeLayout>

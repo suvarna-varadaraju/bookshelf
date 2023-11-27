@@ -8,14 +8,15 @@ import com.android.almufeed.business.domain.utils.networkException.ConnectivityI
 import com.android.almufeed.datasource.network.BookRetrofitService
 import com.android.almufeed.datasource.network.BookRetrofitServiceImpl
 import com.android.almufeed.datasource.network.retrofit.BookWebServices
-import com.android.almufeed.BuildConfig
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -45,8 +46,9 @@ object NetworkModule {
             .addInterceptor(logging)
             .build()
 
+        val BASE_URL = "https://almdevb0bb67faa678fcfadevaos.axcloud.dynamics.com/api/services/FSIMobileServices/FSIMobileService/"
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
     }

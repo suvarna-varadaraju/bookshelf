@@ -9,12 +9,12 @@ plugins {
 
 android {
     namespace 'com.android.almufeed'
-    compileSdk rootProject.compileSdkVersion
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.android.almufeed"
-        minSdk rootProject.minSdkVersion
-        targetSdk rootProject.targetSdkVersion
+        minSdk 21
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -29,11 +29,11 @@ android {
     }
 
     flavorDimensions += "default"
-    productFlavors {
+    /*productFlavors {
         create("bookApi") {
             buildConfigField "String", "BASE_URL", "\"https://www.googleapis.com/books/v1/\""
         }
-    }
+    }*/
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -130,7 +130,6 @@ dependencies {
 
     //Logging-interceptor
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
-    implementation "com.jakewharton.timber:timber:$timberVersion"
     implementation 'com.kyanogen.signatureview:signature-view:1.2'
 }
 kapt {

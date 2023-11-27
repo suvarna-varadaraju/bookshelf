@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.android.almufeed.databinding.FragmentCameraBinding
 import com.android.almufeed.ui.camera.CameraActivity.Companion.getOutputDirectory
-import timber.log.Timber
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -142,7 +141,7 @@ class CameraFragment : Fragment() {
             preview?.setSurfaceProvider(fragmentCameraBinding.viewFinder.surfaceProvider)
 //            observeCameraState(camera?.cameraInfo!!)
         } catch (exc: Exception) {
-            Timber.e("Use case binding failed", exc)
+            exc.printStackTrace()
         }
     }
 
@@ -295,12 +294,10 @@ class CameraFragment : Fragment() {
                 imageCapture.takePicture(
                     outputOptions, cameraExecutor, object : ImageCapture.OnImageSavedCallback {
                         override fun onError(exc: ImageCaptureException) {
-                            Timber.e("Photo capture failed: ${exc.message}", exc)
                             fragmentCameraBinding.progressBar.visibility = View.GONE
                         }
 
                         override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                            Timber.d("Photo capture succeeded: ${output.savedUri}")
                             viewModel.setImageUri(output.savedUri)
                             requireActivity().runOnUiThread {
                                 fragmentCameraBinding.progressBar.visibility = View.GONE

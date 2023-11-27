@@ -16,7 +16,7 @@ public class ConnectivityInterceptor implements Interceptor {
         mContext = context;
     }
 
-    @Override
+   /* @Override
     public Response intercept(Chain chain) throws IOException {
         if (!NetworkUtil.isOnline(mContext)) {
             throw new NoConnectivityException();
@@ -24,6 +24,21 @@ public class ConnectivityInterceptor implements Interceptor {
 
         Request.Builder builder = chain.request().newBuilder();
         return chain.proceed(builder.build());
-    }
+    }*/
 
+    @Override
+    public Response intercept(Chain chain) throws IOException {
+        if (!NetworkUtil.isOnline(mContext)) {
+            throw new NoConnectivityException();
+        }
+        Request originalRequest = chain.request();
+
+        // Create a new request with the Content-Type header
+        Request newRequest = originalRequest.newBuilder()
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .method(originalRequest.method(), originalRequest.body())
+                .build();
+
+        return chain.proceed(newRequest);
+    }
 }

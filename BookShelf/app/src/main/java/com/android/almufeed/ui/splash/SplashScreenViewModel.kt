@@ -13,7 +13,6 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.job
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,7 +24,6 @@ class SplashScreenViewModel @Inject constructor(
     val splashChannelFlow = _splashChannel.receiveAsFlow()
 
     private val _splashLoading = MutableStateFlow(true)
-    val splashLoading = _splashLoading.asStateFlow()
     private val isNetworkConnected = connectionLiveData.asFlow()
 
     fun initViewModel() {
@@ -41,25 +39,17 @@ class SplashScreenViewModel @Inject constructor(
     }
 
     private suspend fun initSplashScreen() {
-        Timber.e("TOKEN initSplashScreen")
+        System.out.println("user first " + basePreferencesManager.isUserLogIn().first())
                 if (basePreferencesManager.isUserLogIn().first()) {
-                        if (basePreferencesManager.isNewUser().first()) {
-                            _splashChannel.send(SplashEvent.NavigateToLaunchpadActivity)
-                            //_splashChannel.send(SplashEvent.NavigateToPersonalInfoActivity)
-                        } else {
-                            _splashChannel.send(SplashEvent.NavigateToLaunchpadActivity)
-                        }
+                    _splashChannel.send(SplashEvent.NavigateToLaunchpadActivity)
                 } else {
                     _splashChannel.send(SplashEvent.NavigateToLoginActivity)
                 }
             _splashLoading.value = false
     }
 
-
     sealed class SplashEvent {
         object NavigateToLoginActivity : SplashEvent()
-        object NavigateToPersonalInfoActivity : SplashEvent()
         object NavigateToLaunchpadActivity : SplashEvent()
     }
-
 }

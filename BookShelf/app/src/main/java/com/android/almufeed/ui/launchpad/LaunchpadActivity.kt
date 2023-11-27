@@ -91,7 +91,6 @@ class LaunchpadActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        launchpadViewModel.getPrefUserDetails()
     }
 
     override fun onSupportNavigateUp(): Boolean {

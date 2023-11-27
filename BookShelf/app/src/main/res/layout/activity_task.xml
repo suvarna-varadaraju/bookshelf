@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary"
     tools:context=".ui.home.TaskActivity">
 
     <include
@@ -13,20 +14,22 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"/>
 
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.book.CardView.Background"
+        android:id="@+id/card1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:padding="30dp"
+        app:strokeWidth="0dp">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerTask"
-        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp10"/>
 
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/progressBar"
-        style="@style/Widget.Material3.CircularProgressIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:elevation="@dimen/dp4"/>
+    </com.google.android.material.card.MaterialCardView>
 
     <FrameLayout
         android:id="@+id/empty_view"

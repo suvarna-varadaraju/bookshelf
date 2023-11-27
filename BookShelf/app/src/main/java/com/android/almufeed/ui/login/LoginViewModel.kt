@@ -1,44 +1,53 @@
 package com.android.almufeed.ui.login
 
-import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.android.almufeed.business.domain.state.DataState
 import com.android.almufeed.business.domain.utils.dataStore.BasePreferencesManager
-import com.android.almufeed.di.NetworkConnection
+import com.android.almufeed.business.domain.utils.exhaustive
+import com.android.almufeed.business.repository.BookInfoRepository
+import com.android.almufeed.datasource.network.models.login.LoginRequest
+import com.android.almufeed.datasource.network.models.login.LoginResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    @NetworkConnection private val connectionLiveData: LiveData<Boolean>,
+    private val bookInfoRepository: BookInfoRepository,
     private val basePreferencesManager: BasePreferencesManager
 ) : ViewModel() {
 
-    private val _loginEventSharedFlow = MutableSharedFlow<LoginEvent>()
-    val loginEventSharedFlow = _loginEventSharedFlow.asSharedFlow()
-    private val _splashLoading = MutableStateFlow(true)
+    private val _myLoginDataSTate: MutableLiveData<DataState<LoginResponse>> = MutableLiveData()
+    val myLoginDataSTate: LiveData<DataState<LoginResponse>> get() = _myLoginDataSTate
 
-    init {
+    fun loginRequest(userName : String, password : String) = viewModelScope.launch {
+        val loginRequest = LoginRequest(
+            _userName = userName,
+            _password = password
+        )
+        setStateEvent(TaskEventLogin.Login(loginRequest))
+    }
 
-        viewModelScope.launch {
-
-            basePreferencesManager.isUserLogIn().onEach {
-                delay(3000)
-                if (it) {
-                    Log.e("SPL::", "isUserLogIn: $it")
-                    _loginEventSharedFlow.emit(LoginEvent.NavigateToLaunchpadActivity)
+    private fun setStateEvent(state: TaskEventLogin) {
+        viewModelScope.launch(Dispatchers.IO) {
+            when (state) {
+                is TaskEventLogin.Login -> {
+                    System.out.println("getAccessToken " + basePreferencesManager.getAccessToken().first())
+                    bookInfoRepository.login(
+                        basePreferencesManager.getAccessToken().first(),state.loginRequest
+                    ).onEach {
+                        _myLoginDataSTate.value = it
+                    }.launchIn(viewModelScope)
                 }
-                _splashLoading.value = false
-            }.launchIn(this)
-        }
+            }
+        }.exhaustive
     }
-
-    sealed class LoginEvent {
-        object NavigateToLaunchpadActivity : LoginEvent()
-        object ErrorEvent : LoginEvent()
-    }
+}
+sealed class TaskEventLogin {
+    data class Login(val loginRequest: LoginRequest) : TaskEventLogin()
 }

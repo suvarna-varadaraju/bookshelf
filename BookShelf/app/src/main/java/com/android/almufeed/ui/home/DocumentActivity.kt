@@ -43,7 +43,5 @@ class DocumentActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-
-
     }
 }

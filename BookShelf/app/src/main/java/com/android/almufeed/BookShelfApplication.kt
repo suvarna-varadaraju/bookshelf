@@ -3,8 +3,6 @@ package com.android.almufeed
 import android.app.Application
 import androidx.viewbinding.BuildConfig
 import dagger.hilt.android.HiltAndroidApp
-import timber.log.Timber
-import timber.log.Timber.DebugTree
 
 @HiltAndroidApp
 class BookShelfApplication : Application() {
@@ -12,7 +10,7 @@ class BookShelfApplication : Application() {
         super.onCreate()
 
         if (BuildConfig.DEBUG) {
-            Timber.plant(DebugTree())
+           // Timber.plant(DebugTree())
         }
     }
 }

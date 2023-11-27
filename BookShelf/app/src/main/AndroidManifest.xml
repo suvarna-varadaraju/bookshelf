@@ -3,7 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-feature android:name="android.hardware.camera.any" />
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -12,6 +16,7 @@
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name=".BookShelfApplication"
@@ -22,16 +27,22 @@
         android:theme="@style/Theme.BookShelf.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.home.CheckListActivity"
+            android:name=".ui.home.events.AddEventsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.attachment.AttachmentList"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.instructionSet.CheckListActivity"
             android:exported="false" />
         <activity
             android:name=".ui.home.SignaturePadActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.RatingActivity"
+            android:name=".ui.home.rateus.RatingActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.AddAttachmentActivity"
+            android:name=".ui.home.attachment.AddAttachmentActivity"
             android:exported="false" />
         <activity
             android:name=".ui.home.ProofOfAttendence"
@@ -96,6 +107,18 @@
             android:name=".ui.home.FavouritesActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+
+        <receiver
+            android:name=".ui.services.BootUpReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".ui.services.AlarmBrodcast" />
     </application>
 
 </manifest>

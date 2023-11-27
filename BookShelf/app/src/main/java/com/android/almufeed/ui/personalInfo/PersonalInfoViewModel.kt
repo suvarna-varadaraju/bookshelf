@@ -17,12 +17,9 @@ class PersonalInfoViewModel @Inject constructor(
     val taskEvent = taskEventChannel.receiveAsFlow()
 
     fun navigateToLaunchpad(firstNmae: String, lastName: String, email : String, imageurl: String) = viewModelScope.launch {
-        basePreferencesManager.setFirstUser(false)
-        basePreferencesManager.updateUserDetails(firstNmae,lastName,email,imageurl)
         taskEventChannel.send(TaskEvent.NavigateToDashboard)
     }
     sealed class TaskEvent {
         object NavigateToDashboard : TaskEvent()
     }
-
 }

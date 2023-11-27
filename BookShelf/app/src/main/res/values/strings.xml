@@ -4,8 +4,8 @@
     <string name="text_network_connected" translatable="false">Network Connected</string>
     <string name="text_welcome" translatable="false">Welcome</string>
     <string name="mobile_number" translatable="false">Mobile Number</string>
-    <string name="user_id" translatable="false">User Id</string>
-    <string name="text_signin" translatable="false">Sign in</string>
+    <string name="user_id" translatable="false">User Name</string>
+    <string name="text_signin" translatable="false">Login</string>
     <string name="activity_login" translatable="false">Login</string>
     <string name="text_verification" translatable="false">Verification</string>
     <string name="text_basic_details" translatable="false">Basic Details</string>

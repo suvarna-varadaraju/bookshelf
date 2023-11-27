@@ -3,7 +3,7 @@
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:background="@color/white"
+android:background="@color/purple_500"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 tools:context=".ui.home.DocumentActivity">
 
@@ -14,7 +14,7 @@ tools:context=".ui.home.DocumentActivity">
     android:layout_height="?attr/actionBarSize"/>
 
 <com.google.android.material.card.MaterialCardView
-    style="@style/Widget.book.CardView.outline"
+    style="@style/Widget.book.CardView.Background"
     android:id="@+id/card1"
     android:layout_weight="1"
     android:layout_width="match_parent"

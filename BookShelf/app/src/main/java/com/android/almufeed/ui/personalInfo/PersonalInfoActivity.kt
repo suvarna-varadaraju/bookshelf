@@ -36,7 +36,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import timber.log.Timber
 import java.io.ByteArrayOutputStream
 import java.io.File
 
@@ -283,8 +282,6 @@ class PersonalInfoActivity : AppCompatActivity() {
     }
 
     private fun addSelectedImage(imageUri: Uri) {
-
-        Timber.i("EDIT addSelectedImage: $imageUri")
         /*val file = File(imageUri.path)
         lifecycleScope.launch {
             compressedImageFile = Compressor.compress(this@PersonalInfoActivity, file)
@@ -304,7 +301,6 @@ class PersonalInfoActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val bitmapUri = result.data?.extras?.get(CameraActivity.IMAGE_URI)
-                Timber.i("Image Uri Camera returned :: %s", bitmapUri)
                 addSelectedImage(bitmapUri as Uri)
             }
         }

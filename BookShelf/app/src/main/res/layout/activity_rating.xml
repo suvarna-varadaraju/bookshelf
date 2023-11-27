@@ -4,13 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.RatingActivity">
+    android:background="@color/primary"
+    tools:context=".ui.home.rateus.RatingActivity">
 
     <include
         layout="@layout/activity_toolbar"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"/>
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.book.CardView.Background"
+        android:id="@+id/card1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/btn_complete"
+        android:padding="30dp"
+        app:strokeWidth="0dp">
 
     <androidx.core.widget.NestedScrollView
         android:layout_below="@+id/toolbar"
@@ -76,10 +87,13 @@
             <View
                 android:id="@+id/view"
                 android:layout_width="match_parent"
+                android:layout_height="1dp"
                 android:layout_below="@+id/btn_customer"
-                android:layout_margin="@dimen/dp22"
-                android:background="@color/purple_500"
-                android:layout_height="1dp">
+                android:layout_marginStart="@dimen/dp22"
+                android:layout_marginTop="@dimen/dp22"
+                android:layout_marginEnd="@dimen/dp22"
+                android:layout_marginBottom="@dimen/dp22"
+                android:background="@color/purple_500">
             </View>
 
             <ImageView
@@ -142,23 +156,20 @@
                 android:maxLength="300"
                 android:singleLine="false"
                 android:elevation="0dp"/>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_complete"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/emailInput"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="@dimen/dp10"
-                android:layout_marginTop="@dimen/dp10"
-                android:layout_marginEnd="@dimen/dp10"
-                android:layout_marginBottom="@dimen/dp10"
-                android:background="@color/green"
-                android:text="Complete"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="@dimen/dp14">
-            </androidx.appcompat.widget.AppCompatButton>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_complete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp14"
+        android:textAllCaps="false"
+        android:background="@drawable/nav_background_button"
+        android:text="Complete"
+        app:fontFamily="@font/montserrat_semibold">
+    </androidx.appcompat.widget.AppCompatButton>
 </RelativeLayout>
