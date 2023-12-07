@@ -18,7 +18,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DashboardActivity : AppCompatActivity() , BaseInterface {
     private lateinit var binding: ActivityDashboardBinding
-    private lateinit var resoureId : String
     private lateinit var snack: Snackbar
     private val baseViewModel: BaseViewModel by viewModels()
 
@@ -26,7 +25,7 @@ class DashboardActivity : AppCompatActivity() , BaseInterface {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        resoureId = intent.getStringExtra("resourceId").toString()
+
         baseViewModel.isNetworkConnected.observe(this) { isNetworkAvailable ->
             showNetworkSnackBar(isNetworkAvailable)
         }
@@ -46,30 +45,6 @@ class DashboardActivity : AppCompatActivity() , BaseInterface {
                     startActivity(this)
                 }
             }
-                /*val toastIntent = Intent(applicationContext, BootUpReceiver::class.java)
-                val toastAlarmIntent = PendingIntent.getBroadcast(
-                    applicationContext,
-                    0,
-                toastIntent,
-                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
-                )
-                val startTime = System.currentTimeMillis() //alarm starts immediately
-
-                val backupAlarmMgr = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-                backupAlarmMgr.setInexactRepeating(
-                    AlarmManager.RTC_WAKEUP,
-                    startTime,
-                    5000,
-                    toastAlarmIntent
-                )*/
-              /*  homeViewModel.createBusiness(
-                    "7d2f26f6-2e67-4299-9abd-fbac27deff25",
-                    "rcI8Q~eugdoR2M0Yx8_gkTPqqyPyT.sn9ab3BdeF",
-                    "client_credentials",
-                    "https://almdevb0bb67faa678fcfadevaos.axcloud.dynamics.com"
-                )*/
-
-                //getTokenApi()
 
             txtActivity.setOnClickListener {
                 Intent(this@DashboardActivity, TaskActivity::class.java).apply {
@@ -78,23 +53,8 @@ class DashboardActivity : AppCompatActivity() , BaseInterface {
             }
         }
 
-        /*val alarm = AlarmReceiver()
-        alarm.setAlarm(this)*/
-
-       /* val intent = Intent(applicationContext, AlarmBrodcast::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(
-            applicationContext,
-            0,
-            intent,
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
-        )
-        val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
-        alarmManager?.setRepeating(
-            AlarmManager.RTC_WAKEUP,
-            5000,
-            AlarmManager.INTERVAL_DAY,
-            pendingIntent
-        )*/
+        val alarm = AlarmReceiver()
+        alarm.setAlarm(this)
     }
 
     override fun showNetworkSnackBar(isNetworkAvailable: Boolean) {

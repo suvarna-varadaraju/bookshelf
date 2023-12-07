@@ -75,10 +75,10 @@ class InstructionRecyclerAdapter (val instructionList: InstructionSetResponseMod
                 binding.etMessage.setOnFocusChangeListener(object : OnFocusChangeListener {
                     override fun onFocusChange(view: View, hasFocus: Boolean) {
                         if (hasFocus) {
-                            //Toast.makeText(context, "Typing", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Typing", Toast.LENGTH_SHORT).show()
                         } else {
                             listener.onItemClick(currentItem.Refrecid, currentItem.FeedbackType,binding.etMessage.text.toString())
-                            //Toast.makeText(context, "Typing Stop", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Typing Stop", Toast.LENGTH_SHORT).show()
                         }
                     }
                 })
@@ -86,12 +86,12 @@ class InstructionRecyclerAdapter (val instructionList: InstructionSetResponseMod
                 binding.etMessage.addTextChangedListener(object : TextWatcher {
 
                     override fun afterTextChanged(s: Editable) {
-                        handler.removeCallbacksAndMessages(null)
+                       /* handler.removeCallbacksAndMessages(null)
 
                         handler.postDelayed({
                             val fullString = s.toString()
                             listener.onItemClick(currentItem.Refrecid, currentItem.FeedbackType,fullString)
-                        }, DELAY_MS)
+                        }, DELAY_MS)*/
                     }
 
                     override fun beforeTextChanged(s: CharSequence, start: Int,
@@ -101,6 +101,7 @@ class InstructionRecyclerAdapter (val instructionList: InstructionSetResponseMod
 
                     override fun onTextChanged(s: CharSequence, start: Int,
                                                before: Int, count: Int) {
+
                     }
                 })
 

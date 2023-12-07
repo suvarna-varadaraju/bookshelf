@@ -74,7 +74,10 @@ public class MyService extends Service  {
                             List<BookEntity> taskId = db.bookDao().getAllBooks();
                             db.close();
                             System.out.println("running service for 5 sec inside response " + taskId);
-                            if(taskId != null && taskId.size() > 0){
+                            if(taskId.size() < response.body().getTask().size()){
+                                PushNotification();
+                            }
+                            /*if(taskId != null && taskId.size() > 0){
                                 for(int i=0; i < response.body().getTask().size(); i++){
                                     System.out.println("running service for 5 sec inside response for " + response.body().getTask().get(i).getTaskId());
                                     if(response.body().getTask().get(i).getTaskId().equals(taskId.get(i).getTask_id())){
@@ -85,7 +88,7 @@ public class MyService extends Service  {
                                         PushNotification();
                                     }
                                 }
-                            }
+                            }*/
                         }
                     }else{
 
@@ -133,7 +136,6 @@ public class MyService extends Service  {
             );
             notificationManager.createNotificationChannel(channel);
         }
-
         notificationManager.notify(0, notification);
     }
 }

@@ -199,7 +199,6 @@ class RatingActivity : AppCompatActivity() {
                     if(dataState.data.Success){
                         Toast.makeText(this@RatingActivity,"Task Completed", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@RatingActivity, DashboardActivity::class.java)
-                        intent.putExtra("taskid", taskId)
                         startActivity(intent)
                     } else {
 

@@ -51,16 +51,16 @@ class CheckListActivity : AppCompatActivity(),InstructionRecyclerAdapter.OnItemC
             supportActionBar?.setDisplayShowTitleEnabled(false)
         }
 
-        binding.toolbar.incToolbarEvent?.visibility = View.VISIBLE
-        binding.toolbar.incToolbarAttachment?.visibility = View.VISIBLE
-        binding.toolbar.incToolbarEvent?.setOnClickListener (View.OnClickListener { view ->
+        binding.toolbar.incToolbarEvent.visibility = View.VISIBLE
+        binding.toolbar.incToolbarAttachment.visibility = View.VISIBLE
+        binding.toolbar.incToolbarEvent.setOnClickListener (View.OnClickListener { view ->
             val intent = Intent(this@CheckListActivity, AddEventsActivity::class.java)
             intent.putExtra("taskid", taskId)
             startActivity(intent)
             finish()
         })
 
-        binding.toolbar.incToolbarAttachment?.setOnClickListener (View.OnClickListener { view ->
+        binding.toolbar.incToolbarAttachment.setOnClickListener (View.OnClickListener { view ->
             val intent = Intent(this@CheckListActivity, AttachmentList::class.java)
             intent.putExtra("taskid", taskId)
             startActivity(intent)
@@ -87,14 +87,14 @@ class CheckListActivity : AppCompatActivity(),InstructionRecyclerAdapter.OnItemC
             pd.show()
 
             for (position in 0 until instructionRecyclerAdapter.itemCount) {
-                val viewHolder = instructionRecyclerAdapter.createViewHolder(binding.recyclerTask, 0)
+                val viewHolder = instructionRecyclerAdapter.createViewHolder(binding.recyclerTask, position)
                 instructionRecyclerAdapter.bindViewHolder(viewHolder, position)
 
-                val btnYesInFirstItem = viewHolder.binding.checklist.btnYes.background
-                val btnNoInFirstItem = viewHolder.binding.checklist.btnNo.background
+                val btnYesInFirstItem = viewHolder.binding.checklist.btnYes
+                val btnNoInFirstItem = viewHolder.binding.checklist.btnNo
                 val btnfreeTextInFirstItem = viewHolder.binding.etMessage.text.toString()
 
-                if(btnYesInFirstItem.equals(R.color.primary) || btnNoInFirstItem.equals(R.color.primary) || btnfreeTextInFirstItem.isNotEmpty()){
+                if(btnYesInFirstItem.isPressed || btnNoInFirstItem.isPressed || btnfreeTextInFirstItem.isNotEmpty()){
 
                     //addEventsViewModel.saveForEvent(taskId,"comments","Instruction set completed")
                 }else{

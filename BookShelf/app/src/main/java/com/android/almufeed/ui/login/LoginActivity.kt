@@ -177,7 +177,6 @@ class LoginActivity : AppCompatActivity(), BaseInterface {
 
     private fun gotoLaunchpadPage(resourceId:String) {
         Intent(this@LoginActivity, DashboardActivity::class.java).apply {
-            putExtra("resourceId",resourceId)
             startActivity(this)
         }
     }
