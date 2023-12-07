@@ -136,7 +136,7 @@ class AddAttachmentActivity : AppCompatActivity() {
                 }else if(binding.spinnerType.selectedItem.equals("After")){
                     addEventsViewModel.saveForEvent(taskId,"comments","After Task")
                 }
-                addAttachmentViewModel.requestForImage(convertedImage1,convertedImage2,convertedImage3,selectedImageType,binding.etDescription.text.toString(),taskId,"tab1")
+                addAttachmentViewModel.requestForImage(convertedImage1,convertedImage2,convertedImage3,selectedImageType,binding.etDescription.text.toString(),taskId)
             }
             /*val intent = Intent(this@AddAttachmentActivity, RatingActivity::class.java)
             intent.putExtra("taskid", taskId)

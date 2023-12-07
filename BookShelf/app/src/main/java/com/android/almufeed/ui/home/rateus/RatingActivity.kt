@@ -30,6 +30,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.kyanogen.signatureview.SignatureView
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayOutputStream
+import java.text.SimpleDateFormat
+import java.util.Date
 
 @AndroidEntryPoint
 class RatingActivity : AppCompatActivity() {
@@ -44,7 +46,7 @@ class RatingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRatingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        var taskId = intent.getStringExtra("taskid").toString()
+        val taskId = intent.getStringExtra("taskid").toString()
         setSupportActionBar(binding.toolbar.incToolbarWithCenterLogoToolbar)
         val actionBar = supportActionBar
         if (actionBar != null) {
@@ -77,14 +79,21 @@ class RatingActivity : AppCompatActivity() {
         })
 
         binding.btnComplete.setOnClickListener (View.OnClickListener { view ->
-            pd = Dialog(this, android.R.style.Theme_Black)
-            val view: View = LayoutInflater.from(this).inflate(R.layout.remove_border, null)
-            pd.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            pd.getWindow()!!.setBackgroundDrawableResource(R.color.transparent)
-            pd.setContentView(view)
-            pd.show()
-            addEventsViewModel.saveForEvent(taskId,"comments","Completed")
-            ratingViewModel.requestForRating(customerSignature,techSignature,binding.rating.rating.toDouble(),binding.emailInput.text.toString(),"",taskId,"tab1")
+
+            if(binding.rating.rating > 0 && binding.emailInput.text.toString().isNotEmpty() && binding.imgSignatureCustomer.drawable != null && binding.imgSignatureTech.drawable != null){
+                pd = Dialog(this, android.R.style.Theme_Black)
+                val view: View = LayoutInflater.from(this).inflate(R.layout.remove_border, null)
+                pd.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                pd.getWindow()!!.setBackgroundDrawableResource(R.color.transparent)
+                pd.setContentView(view)
+                pd.show()
+                addEventsViewModel.saveForEvent(taskId,"comments","Completed")
+                val sdf = SimpleDateFormat("dd-MM-yyyy hh:mm")
+                val currentDate = sdf.format(Date())
+                ratingViewModel.requestForRating(customerSignature,techSignature,binding.rating.rating.toDouble(),binding.emailInput.text.toString(),currentDate,taskId)
+            }else{
+                Toast.makeText(this@RatingActivity,"All fields are mandatory", Toast.LENGTH_SHORT).show()
+            }
         })
 
         subscribeObservers()
@@ -95,7 +104,7 @@ class RatingActivity : AppCompatActivity() {
         mBuilder.setView(layoutInflater.inflate(R.layout.dialog_signature, null))
         val mDialog = mBuilder.create()
         mDialog.setCancelable(false)
-        mDialog.setCanceledOnTouchOutside(false)
+        mDialog.setCanceledOnTouchOutside(true)
         mDialog.show()
 
         val btnClear = mDialog.findViewById<Button>(R.id.btnClear)
@@ -117,16 +126,16 @@ class RatingActivity : AppCompatActivity() {
             val bitmap: Bitmap = signatureView!!.getSignatureBitmap()
             if (bitmap != null) {
                 if(tag == "customer"){
-                    binding.imgSignatureCustomer!!.visibility = View.VISIBLE
-                    binding.imgSignatureCustomer!!.setImageBitmap(bitmap)
+                    binding.imgSignatureCustomer.visibility = View.VISIBLE
+                    binding.imgSignatureCustomer.setImageBitmap(bitmap)
                     val baos = ByteArrayOutputStream()
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos) // bm is the bitmap object
                     val byteArrayImage: ByteArray = baos.toByteArray()
                     customerSignature = Base64.encodeToString(byteArrayImage, Base64.DEFAULT)
                     mDialog.dismiss()
                 }else if(tag == "technician"){
-                    binding.imgSignatureTech!!.visibility = View.VISIBLE
-                    binding.imgSignatureTech!!.setImageBitmap(bitmap)
+                    binding.imgSignatureTech.visibility = View.VISIBLE
+                    binding.imgSignatureTech.setImageBitmap(bitmap)
                     val baos = ByteArrayOutputStream()
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos) // bm is the bitmap object
                     val byteArrayImage: ByteArray = baos.toByteArray()

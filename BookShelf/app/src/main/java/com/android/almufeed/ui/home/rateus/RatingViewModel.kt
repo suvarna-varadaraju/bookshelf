@@ -27,8 +27,9 @@ class RatingViewModel @Inject constructor(
     private val _myRateDataSTate: MutableLiveData<DataState<RatingResponseModel>> = MutableLiveData()
     val myRateDataSTate: LiveData<DataState<RatingResponseModel>> get() = _myRateDataSTate
 
-    fun requestForRating(customerSignature : String, techiSignature:String,rating: Double,comment: String,dateTime: String,taskId: String,userName: String ) = viewModelScope.launch {
-        val taskRequest = RatingData(
+    fun requestForRating(customerSignature : String, techiSignature:String,rating: Double,comment: String,dateTime: String,taskId: String) = viewModelScope.launch {
+        val userName = basePreferencesManager.getUserName().first()
+            val taskRequest = RatingData(
             customerSignature = customerSignature,
             techiSignature = techiSignature,
             rating = rating,
