@@ -4,6 +4,19 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class GetAttachmentData (
+
+    @SerializedName("taskId")
+    @Expose
+    val taskId: String,
+
+    @SerializedName("datetime")
+    @Expose
+    val datetime: String,
+
+    @SerializedName("resource")
+    @Expose
+    val resource: String,
+
     @SerializedName("Image1")
     @Expose
     val Image1: String,
@@ -16,23 +29,23 @@ data class GetAttachmentData (
     @Expose
     val Image3: String,
 
-    @SerializedName("type")
+    @SerializedName("Image4")
     @Expose
-    val type: Int,
+    val Image4: String,
 
-    @SerializedName("datetime")
+    @SerializedName("Image5")
     @Expose
-    val datetime: String,
+    val Image5: String,
+
+    @SerializedName("Image6")
+    @Expose
+    val Image6: String,
 
     @SerializedName("description")
     @Expose
     val description: String,
 
-    @SerializedName("taskId")
+    @SerializedName("type")
     @Expose
-    val taskId: String,
-
-    @SerializedName("resource")
-    @Expose
-    val resource: String
+    val type: Int,
 )

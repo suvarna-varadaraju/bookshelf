@@ -5,9 +5,11 @@ import android.graphics.Color
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import com.android.almufeed.R
 import com.github.barteksc.pdfviewer.PDFView
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener
@@ -17,7 +19,7 @@ import java.net.URL
 
 class PDFVIew : AppCompatActivity() {
     lateinit var backPress: ImageView
-    lateinit var aboutus: TextView
+    lateinit var toolbar: Toolbar
     lateinit var pdfView : PDFView
     private lateinit var progressDialog: ProgressDialog
 
@@ -25,16 +27,22 @@ class PDFVIew : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pdfview)
         pdfView = findViewById<PDFView>(R.id.pdfView) as PDFView
-        backPress = findViewById<ImageView>(R.id.inc_toolbar_image)
-        aboutus = findViewById<TextView>(R.id.aboutus)
-        backPress.visibility = View.VISIBLE
+        toolbar = findViewById<Toolbar>(R.id.toolbar)
+
         val intent = getIntent()
         var pdfUrl = intent.getStringExtra("url").toString()
-        aboutus.setText("Documents")
 
-        backPress.setOnClickListener (View.OnClickListener { view ->
+        setSupportActionBar(toolbar)
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.icon_actionbar_backbutton)
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayShowTitleEnabled(false);
+        }
+
+       /* backPress.setOnClickListener (View.OnClickListener { view ->
             this@PDFVIew.onBackPressedDispatcher.onBackPressed()
-        })
+        })*/
 
         pdfView.fromAsset(pdfUrl)
             .enableSwipe(true)
@@ -88,5 +96,13 @@ class PDFVIew : AppCompatActivity() {
                 })
                 .load()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

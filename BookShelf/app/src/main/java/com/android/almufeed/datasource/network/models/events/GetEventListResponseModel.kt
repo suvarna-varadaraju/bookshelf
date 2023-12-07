@@ -4,7 +4,13 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class GetEventListResponseModel (
-    @SerializedName("Success")
+    @SerializedName("EventList")
     @Expose
-    val Success: Boolean
+    val EventList: ArrayList<GetEventData>
     )
+
+data class GetEventData (
+    @SerializedName("TaskEvent")
+    @Expose
+    val TaskEvent: String
+)

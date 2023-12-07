@@ -9,6 +9,8 @@ import com.android.almufeed.datasource.network.models.attachment.GetAttachmentRe
 import com.android.almufeed.datasource.network.models.attachment.GetAttachmentResponseModel
 import com.android.almufeed.datasource.network.models.bookList.BookListNetworkResponse
 import com.android.almufeed.datasource.network.models.events.GetEventListResponseModel
+import com.android.almufeed.datasource.network.models.events.SaveEventRequestModel
+import com.android.almufeed.datasource.network.models.events.SaveEventResponseModel
 import com.android.almufeed.datasource.network.models.instructionSet.InstructionSetRequestModel
 import com.android.almufeed.datasource.network.models.instructionSet.InstructionSetResponseModel
 import com.android.almufeed.datasource.network.models.login.LoginRequest
@@ -224,6 +226,30 @@ class BookRetrofitServiceImpl constructor(
                 }
             } catch (e: Exception) {
                 Log.e("get event::", "Exception: $e.")
+                emit(DataState.Loading(false))
+                emit(DataState.Error(CancellationException("unknown")))
+            }
+        }
+
+    override suspend fun setEventTask(token: String,request: SaveEventRequestModel): Flow<DataState<SaveEventResponseModel>> =
+        flow {
+            emit(DataState.Loading(true))
+            try {
+                val response = bookWebServices.setEventTask(token,request)
+                System.out.println("Send event request " + request)
+                System.out.println("Send event response " + response.body())
+                if (response.isSuccessful) {
+                    Log.d("Send event::", "API isSuccessful: ")
+                    emit(DataState.Success(response.body()!!))
+                    emit(DataState.Loading(false))
+                } else {
+                    Log.d("Send event::", "API NOT isSuccessful: ")
+                    Log.d("Send event::", "ERROR : " + response.errorBody()?.string())
+                    emit(DataState.Loading(false))
+                    emit(DataState.Error(CancellationException("unknown")))
+                }
+            } catch (e: Exception) {
+                Log.e("Send event::", "Exception: $e.")
                 emit(DataState.Loading(false))
                 emit(DataState.Error(CancellationException("unknown")))
             }

@@ -7,6 +7,8 @@ import com.android.almufeed.datasource.network.models.attachment.AttachmentRespo
 import com.android.almufeed.datasource.network.models.attachment.GetAttachmentRequestModel
 import com.android.almufeed.datasource.network.models.attachment.GetAttachmentResponseModel
 import com.android.almufeed.datasource.network.models.events.GetEventListResponseModel
+import com.android.almufeed.datasource.network.models.events.SaveEventRequestModel
+import com.android.almufeed.datasource.network.models.events.SaveEventResponseModel
 import com.android.almufeed.datasource.network.models.instructionSet.InstructionSetRequestModel
 import com.android.almufeed.datasource.network.models.instructionSet.InstructionSetResponseModel
 import com.android.almufeed.datasource.network.models.login.LoginRequest
@@ -36,13 +38,11 @@ class BookNetworkDataSourceImpl @Inject constructor(
             emit(plans)
         }
     }
-
     override suspend fun getProblemList(token: String,request: InstructionSetRequestModel): Flow<DataState<InstructionSetResponseModel>> = flow{
         bookRetrofitService.getProblemList(token,request).collect{ plans ->
             emit(plans)
         }
     }
-
     override suspend fun updateProblemList(token: String,request: UpdateInstructionSetRequestModel): Flow<DataState<UpdateInstructionSetResponseModel>> = flow{
         bookRetrofitService.updateProblemList(token,request).collect{ plans ->
             emit(plans)
@@ -68,6 +68,12 @@ class BookNetworkDataSourceImpl @Inject constructor(
     }
     override suspend fun setRating(token: String,request: RatingRequestModel): Flow<DataState<RatingResponseModel>> = flow{
         bookRetrofitService.setRating(token,request).collect{ plans ->
+            emit(plans)
+        }
+    }
+
+    override suspend fun setEventTask(token: String,request: SaveEventRequestModel): Flow<DataState<SaveEventResponseModel>> = flow{
+        bookRetrofitService.setEventTask(token,request).collect{ plans ->
             emit(plans)
         }
     }

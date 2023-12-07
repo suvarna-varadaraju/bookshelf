@@ -16,11 +16,6 @@ class ProofOfAttendence : AppCompatActivity() {
         setContentView(binding.root)
         var taskId = intent.getStringExtra("taskid").toString()
         binding.toolbar.aboutus.setText("Task : " + taskId)
-        binding.toolbar.incToolbarImage.visibility = View.VISIBLE
-
-        binding.toolbar.incToolbarImage.setOnClickListener (View.OnClickListener { view ->
-            this@ProofOfAttendence.onBackPressedDispatcher.onBackPressed()
-        })
 
         binding.btnNext.setOnClickListener(View.OnClickListener { view ->
 

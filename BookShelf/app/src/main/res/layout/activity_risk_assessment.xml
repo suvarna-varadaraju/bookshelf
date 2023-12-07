@@ -35,7 +35,9 @@
                 android:text="Risk Assessment"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dp24">
+                android:textSize="@dimen/dp24"
+                android:layout_marginBottom="@dimen/dp10"
+                app:fontFamily="@font/montserrat_semibold">
             </androidx.appcompat.widget.AppCompatTextView>
 
             <com.google.android.material.textview.MaterialTextView
@@ -47,7 +49,9 @@
                 android:text="Please ensure that all questions are completed, before continue"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dp18"/>
+                android:textSize="@dimen/dp18"
+                android:layout_marginBottom="@dimen/dp10"
+                app:fontFamily="@font/montserrat_medium"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txtscheduledate"
@@ -57,7 +61,9 @@
                 android:layout_marginTop="@dimen/dp5"
                 android:text="Do you have the right tools for the job?"
                 android:textAlignment="center"
-                android:textSize="@dimen/dp18"/>
+                android:textSize="@dimen/dp18"
+                android:layout_marginBottom="@dimen/dp10"
+                app:fontFamily="@font/montserrat"/>
 
             <CheckBox
                 android:id="@+id/checkBox_tool1"
@@ -82,7 +88,9 @@
                 android:layout_height="wrap_content"
                 android:text="Have you performed all neccessary safety checks?"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dp18" />
+                android:textSize="@dimen/dp18"
+                android:layout_marginBottom="@dimen/dp10"
+                app:fontFamily="@font/montserrat"/>
 
             <CheckBox
                 android:id="@+id/checkBox_check1"
@@ -107,7 +115,9 @@
                 android:layout_height="wrap_content"
                 android:text="Please record any additional comments"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dp18"/>
+                android:textSize="@dimen/dp18"
+                android:layout_marginBottom="@dimen/dp5"
+                app:fontFamily="@font/montserrat"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/et_message"
@@ -156,7 +166,8 @@
         android:layout_marginBottom="@dimen/dp10"
         android:layout_above="@+id/btn_unsafe"
         android:background="@drawable/nav_background_button"
-        android:text="Safe To Continue">
+        android:text="Safe To Continue"
+        app:fontFamily="@font/montserrat_semibold">
     </androidx.appcompat.widget.AppCompatButton>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -168,6 +179,7 @@
         android:textSize="@dimen/dp14"
         android:textAllCaps="false"
         android:background="@color/red"
-        android:text="Not Safe">
+        android:text="Not Safe"
+        app:fontFamily="@font/montserrat_semibold">
     </androidx.appcompat.widget.AppCompatButton>
 </RelativeLayout>

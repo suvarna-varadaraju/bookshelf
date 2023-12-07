@@ -7,6 +7,8 @@ import com.android.almufeed.datasource.network.models.attachment.GetAttachmentRe
 import com.android.almufeed.datasource.network.models.attachment.GetAttachmentResponseModel
 import com.android.almufeed.datasource.network.models.bookList.BookListNetworkResponse
 import com.android.almufeed.datasource.network.models.events.GetEventListResponseModel
+import com.android.almufeed.datasource.network.models.events.SaveEventRequestModel
+import com.android.almufeed.datasource.network.models.events.SaveEventResponseModel
 import com.android.almufeed.datasource.network.models.instructionSet.InstructionSetRequestModel
 import com.android.almufeed.datasource.network.models.instructionSet.InstructionSetResponseModel
 import com.android.almufeed.datasource.network.models.login.LoginRequest
@@ -30,4 +32,5 @@ interface BookRetrofitService {
     suspend fun getAttachment(token: String, request: GetAttachmentRequestModel): Flow<DataState<GetAttachmentResponseModel>>
     suspend fun getEventList(token: String): Flow<DataState<GetEventListResponseModel>>
     suspend fun setRating(token: String,request: RatingRequestModel): Flow<DataState<RatingResponseModel>>
+    suspend fun setEventTask(token: String,request: SaveEventRequestModel): Flow<DataState<SaveEventResponseModel>>
 }

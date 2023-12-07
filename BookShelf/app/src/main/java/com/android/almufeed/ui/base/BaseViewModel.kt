@@ -31,11 +31,14 @@ class BaseViewModel @Inject constructor(
         System.out.println("user first1 " + basePreferencesManager.isUserLogIn().first())
     }
 
+    fun updateUsername(userName:String) = viewModelScope.launch {
+        basePreferencesManager.updateUserName(userName)
+    }
+
     private fun setStateEvent(state: Event) {
         viewModelScope.launch(Dispatchers.IO) {
             when (state) {
                 is Event.ResetToken -> {
-                    System.out.println("getAccessToken " + state.token)
                     basePreferencesManager.updateAccessToken(state.token)
                 }
             }

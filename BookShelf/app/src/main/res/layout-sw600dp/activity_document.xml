@@ -7,11 +7,33 @@ android:background="@color/purple_500"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 tools:context=".ui.home.DocumentActivity">
 
-<include
-    layout="@layout/activity_toolbar"
-    android:id="@+id/toolbar"
-    android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"/>
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/toolbarapp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary"
+            app:contentInsetStartWithNavigation="0dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/aboutus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Documents"
+                android:textColor="@color/white"
+                android:layout_marginStart="@dimen/dp10"
+                android:textSize="24dp"
+                app:fontFamily="@font/montserrat_semibold"/>
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
 <com.google.android.material.card.MaterialCardView
     style="@style/Widget.book.CardView.Background"
@@ -19,7 +41,7 @@ tools:context=".ui.home.DocumentActivity">
     android:layout_weight="1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_below="@+id/toolbar"
+    android:layout_below="@+id/toolbarapp"
     android:layout_margin="10dp"
     android:padding="10dp"
     app:strokeWidth="0dp">

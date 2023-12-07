@@ -34,14 +34,14 @@ class FavouriteRecyclerAdapter (val context: Context, val bookList: List<BookEnt
 
         fun bind(currentItem: BookEntity, position: Int) {
             binding.apply {
-                txtFavBookTitle.text = currentItem.name
+               /* txtFavBookTitle.text = currentItem.name
                 txtFavBookAuthor.text = currentItem.author
                 txtDescBookPublishDate.text = "Expire On : "+ currentItem.publishdate
                 txtDescBookPubliser.text = "Publisher : "+ currentItem.publisher
                 btnRating.text = currentItem.rating
                 Glide.with(binding.root.context)
                     .load(currentItem.image)
-                    .into(binding.imgFavBookImage)
+                    .into(binding.imgFavBookImage)*/
             }
         }
     }

@@ -1,9 +1,14 @@
 package com.android.almufeed.ui.home.instructionSet
 
 import android.content.Context
+import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.android.almufeed.R
 import com.android.almufeed.databinding.RecyclerInstructionadapterBinding
@@ -14,6 +19,8 @@ class InstructionRecyclerAdapter (val instructionList: InstructionSetResponseMod
                                   val context: Context,
                                   private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<InstructionRecyclerAdapter.ItemViewHolder>() {
+    private val DELAY_MS: Long = 1000
+    private val handler = Handler()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding = RecyclerInstructionadapterBinding.inflate(
@@ -27,13 +34,13 @@ class InstructionRecyclerAdapter (val instructionList: InstructionSetResponseMod
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val currentItem = instructionList.problem.get(position)
         if (currentItem != null) {
-            holder.bind(currentItem,position)
+            holder.bind(currentItem)
         }
     }
 
-    inner class ItemViewHolder(private val binding: RecyclerInstructionadapterBinding) :
+    inner class ItemViewHolder(val binding: RecyclerInstructionadapterBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(currentItem: InstructionData, position: Int) {
+        fun bind(currentItem: InstructionData) {
             binding.apply {
 
                 /*feedbacktype = 0 = nothing
@@ -64,6 +71,38 @@ class InstructionRecyclerAdapter (val instructionList: InstructionSetResponseMod
                     }
                     else -> print("I don't know anything about it")
                 }
+
+                binding.etMessage.setOnFocusChangeListener(object : OnFocusChangeListener {
+                    override fun onFocusChange(view: View, hasFocus: Boolean) {
+                        if (hasFocus) {
+                            //Toast.makeText(context, "Typing", Toast.LENGTH_SHORT).show()
+                        } else {
+                            listener.onItemClick(currentItem.Refrecid, currentItem.FeedbackType,binding.etMessage.text.toString())
+                            //Toast.makeText(context, "Typing Stop", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                })
+
+                binding.etMessage.addTextChangedListener(object : TextWatcher {
+
+                    override fun afterTextChanged(s: Editable) {
+                        handler.removeCallbacksAndMessages(null)
+
+                        handler.postDelayed({
+                            val fullString = s.toString()
+                            listener.onItemClick(currentItem.Refrecid, currentItem.FeedbackType,fullString)
+                        }, DELAY_MS)
+                    }
+
+                    override fun beforeTextChanged(s: CharSequence, start: Int,
+                                                   count: Int, after: Int) {
+
+                    }
+
+                    override fun onTextChanged(s: CharSequence, start: Int,
+                                               before: Int, count: Int) {
+                    }
+                })
 
                binding.checklist.btnYes.setOnClickListener(View.OnClickListener { view ->
                     binding.checklist.btnYes.setTextColor(context.getColor(R.color.white))

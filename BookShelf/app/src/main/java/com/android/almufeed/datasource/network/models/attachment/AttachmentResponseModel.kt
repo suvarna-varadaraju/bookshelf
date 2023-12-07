@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class AttachmentResponseModel (
-    @SerializedName("Success")
+    @SerializedName("result")
     @Expose
     val Success: Boolean
 )

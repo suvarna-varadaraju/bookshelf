@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class GetAttachmentResponseModel(
 
-    @SerializedName("FsiImage")
+    @SerializedName("AnswerList")
     @Expose
     val fsiImage: ArrayList<GetAttachmentData>,
 )

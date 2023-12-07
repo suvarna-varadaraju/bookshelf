@@ -16,6 +16,18 @@ data class AttachmentData (
     @Expose
     val Image3: String,
 
+    @SerializedName("Image4")
+    @Expose
+    val Image4: String,
+
+    @SerializedName("Image5")
+    @Expose
+    val Image5: String,
+
+    @SerializedName("Image6")
+    @Expose
+    val Image6: String,
+
     @SerializedName("type")
     @Expose
     val type: Int,

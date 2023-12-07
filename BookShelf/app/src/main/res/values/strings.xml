@@ -3,6 +3,7 @@
     <string name="text_network_not_available" translatable="false">Network not available</string>
     <string name="text_network_connected" translatable="false">Network Connected</string>
     <string name="text_welcome" translatable="false">Welcome</string>
+    <string name="text_task" translatable="false">No Task</string>
     <string name="mobile_number" translatable="false">Mobile Number</string>
     <string name="user_id" translatable="false">User Name</string>
     <string name="text_signin" translatable="false">Login</string>

@@ -37,7 +37,8 @@ class HomeViewModel @Inject constructor(
     private val _myTaskDataSTate: MutableLiveData<DataState<TaskListResponse>> = MutableLiveData()
     val myTaskDataSTate: LiveData<DataState<TaskListResponse>> get() = _myTaskDataSTate
 
-    fun requestForTask(resourceId : String) = viewModelScope.launch {
+    fun requestForTask() = viewModelScope.launch {
+        val resourceId = basePreferencesManager.getUserName().first()
         val taskRequest = TaskListRequest(
             _ID = resourceId
         )

@@ -5,7 +5,13 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
+import com.android.almufeed.business.domain.utils.dateFormater
+import com.android.almufeed.business.domain.utils.formatQcDate
+import com.android.almufeed.business.domain.utils.getDate
 import com.android.almufeed.databinding.RecyclerTaskadapterBinding
+import com.android.almufeed.datasource.cache.database.BookDatabase
+import com.android.almufeed.datasource.cache.models.book.BookEntity
 import com.android.almufeed.datasource.network.models.bookList.BookData
 import com.android.almufeed.datasource.network.models.bookList.BookListNetworkResponse
 import com.android.almufeed.datasource.network.models.tasklist.TaskListResponse
@@ -27,13 +33,13 @@ class TaskRecyclerAdapter (val taskList: TaskListResponse, val context: Context
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val currentItem = taskList.task.get(position)
         if (currentItem != null) {
-            holder.bind(currentItem,position)
+            holder.bind(currentItem)
         }
     }
 
     inner class ItemViewHolder(private val binding: RecyclerTaskadapterBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(currentItem: BookData, position: Int) {
+        fun bind(currentItem: BookData) {
             binding.apply {
                 itemView.setOnClickListener {
                     val intent = Intent(context, TaskDetailsActivity::class.java)
@@ -51,25 +57,13 @@ class TaskRecyclerAdapter (val taskList: TaskListResponse, val context: Context
                 }
 
                 txtTaskid.text = "Task ID " + currentItem.TaskId
-                txtscheduledate.text = "Scheduled Date :  " + currentItem.scheduledDate
-                txtAttendDate.text = "Due Date :  " + currentItem.attendDate
+                txtscheduledate.text = "Reported Date :  " + dateFormater(currentItem.scheduledDate)
+                txtAttendDate.text = "Due Date :  " + dateFormater(currentItem.attendDate)
                 txtbuilding.text = "Building :  " + currentItem.Building
                 txtlocation.text = "Location :  " + currentItem.Location
                 txtpriority.text = "Priority :  " + currentItem.Priority
                 txtproblem.text = "Problem :  " + currentItem.Problem
                 txtcategory.text = "Category :  " + currentItem.Category
-
-              /*  btnOpen.setOnClickListener {
-                    val intent = Intent(context, TaskDetailsActivity::class.java)
-                    intent.putExtra("taskid", currentItem.id)
-                    context.startActivity(intent)
-                }
-
-                btnAccept.setOnClickListener {
-                    val intent = Intent(context, RiskAssessment::class.java)
-                    intent.putExtra("taskid", currentItem.id)
-                    context.startActivity(intent)
-                }*/
             }
         }
     }

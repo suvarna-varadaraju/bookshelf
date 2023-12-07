@@ -2,8 +2,11 @@ package com.android.almufeed.ui.login
 
 import android.app.Dialog
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.os.StrictMode
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,7 +18,6 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.android.almufeed.R
 import com.android.almufeed.business.domain.state.DataState
-import com.android.almufeed.business.domain.utils.dataStore.BasePreferencesManager
 import com.android.almufeed.business.domain.utils.errorListener
 import com.android.almufeed.business.domain.utils.exhaustive
 import com.android.almufeed.business.domain.utils.toast
@@ -32,8 +34,6 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.regex.Matcher
-import java.util.regex.Pattern
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity(), BaseInterface {
@@ -74,7 +74,6 @@ class LoginActivity : AppCompatActivity(), BaseInterface {
             cardMobileNumber.errorListener(binding.etusername)
             cardPassword.errorListener(binding.etpassword)
             pd.dismiss()
-            //progressBar.visibility = View.INVISIBLE
             btnSignIn.setOnClickListener{
 
                 if(binding.etusername.text.isNullOrEmpty()){
@@ -84,11 +83,6 @@ class LoginActivity : AppCompatActivity(), BaseInterface {
                 }else if(binding.etusername.text.toString().isNotEmpty() && binding.etpassword.text.toString().isNotEmpty()){
                         if (isValidPassword(binding.etpassword.text.toString())) {
                             pd.show()
-                           /* Intent(this@LoginActivity, DashboardActivity::class.java).apply {
-                                putExtra("resourceId","resourceId")
-                                putExtra("token","accessToken")
-                                startActivity(this)
-                            }*/
                             getTokenApi(binding.etusername.text!!.trim().toString(), binding.etpassword.text!!.trim().toString())
                         } else {
                             binding.cardPassword.error = "Please enter correct password"
@@ -105,7 +99,6 @@ class LoginActivity : AppCompatActivity(), BaseInterface {
         //if (password.filter { it.isLetter() }.filter { it.isUpperCase() }.firstOrNull() == null) return false
         if (password.filter { it.isLetter() }.filter { it.isLowerCase() }.firstOrNull() == null) return false
         //if (password.filter { !it.isLetterOrDigit() }.firstOrNull() == null) return false
-
         return true
     }
 
@@ -123,8 +116,16 @@ class LoginActivity : AppCompatActivity(), BaseInterface {
                         Log.d("products", response.body().toString())
                         if (response.body() != null) {
                             baseViewModel.setToken(response.body()!!.access_token)
+                            var accessToken = "Bearer " + response.body()!!.access_token
+                            val sharedPreferences: SharedPreferences =
+                                getSharedPreferences("MySharedPref", MODE_PRIVATE)
+                            val myEdit: SharedPreferences.Editor = sharedPreferences.edit()
+                            myEdit.putString("token", accessToken)
+                            myEdit.commit()
                             //accessToken = "Bearer " + response.body()!!.access_token
-                            loginViewModel.loginRequest(userName,password)
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                loginViewModel.loginRequest(userName,password)
+                            }, 1000)
                         }
                     }
                 }
@@ -164,6 +165,7 @@ class LoginActivity : AppCompatActivity(), BaseInterface {
                     Log.e("AR_MYBUSS::", "UI Details: ${dataState.data}")
                     if(dataState.data.Success){
                         baseViewModel.updateLogin()
+                        baseViewModel.updateUsername(dataState.data.ResourceID)
                         gotoLaunchpadPage(dataState.data.ResourceID)
                     }else{
                         Toast.makeText(this@LoginActivity,"Incorrect username or password", Toast.LENGTH_SHORT).show()

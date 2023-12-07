@@ -9,6 +9,9 @@ import com.android.almufeed.business.domain.utils.dataStore.BasePreferencesManag
 import com.android.almufeed.business.domain.utils.exhaustive
 import com.android.almufeed.business.repository.BookInfoRepository
 import com.android.almufeed.datasource.network.models.events.GetEventListResponseModel
+import com.android.almufeed.datasource.network.models.events.SaveEventData
+import com.android.almufeed.datasource.network.models.events.SaveEventRequestModel
+import com.android.almufeed.datasource.network.models.events.SaveEventResponseModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
@@ -27,11 +30,27 @@ class AddEventsViewModel @Inject constructor(
     private val _myEventDataSTate: MutableLiveData<DataState<GetEventListResponseModel>> = MutableLiveData()
     val myEventDataSTate: LiveData<DataState<GetEventListResponseModel>> get() = _myEventDataSTate
 
+    private val _mySetEventDataSTate: MutableLiveData<DataState<SaveEventResponseModel>> = MutableLiveData()
+    val mySetEventDataSTate: LiveData<DataState<SaveEventResponseModel>> get() = _mySetEventDataSTate
+
     fun requestForEvent() = viewModelScope.launch {
-        setStateEvent()
+        setEvent()
+    }
+    fun saveForEvent(taskId : String, comments : String, events : String) = viewModelScope.launch {
+        val userName = basePreferencesManager.getUserName().first()
+        val imageRequest = SaveEventData(
+            taskId = taskId,
+            resource = userName,
+            Comments = comments,
+            Events = events
+        )
+        val update = SaveEventRequestModel(
+            fsiImage = imageRequest
+        )
+        setStateEvent(TaskEvent.SaveEvent(update))
     }
 
-    private fun setStateEvent() {
+    private fun setEvent() {
         viewModelScope.launch(Dispatchers.IO) {
             bookInfoRepository.getEventList(
                 basePreferencesManager.getAccessToken().first()
@@ -40,4 +59,22 @@ class AddEventsViewModel @Inject constructor(
             }.launchIn(viewModelScope)
         }.exhaustive
     }
+
+    private fun setStateEvent(state: TaskEvent) {
+        viewModelScope.launch(Dispatchers.IO) {
+            when (state) {
+                is TaskEvent.SaveEvent -> {
+                    bookInfoRepository.setEvent(
+                        basePreferencesManager.getAccessToken().first(),state.Request
+                    ).onEach {
+                        _mySetEventDataSTate.value = it
+                    }.launchIn(viewModelScope)
+                }
+            }
+        }.exhaustive
+    }
+}
+
+sealed class TaskEvent {
+    data class SaveEvent(val Request: SaveEventRequestModel) : TaskEvent()
 }

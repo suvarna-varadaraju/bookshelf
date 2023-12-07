@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/purple_500"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.home.events.AddEventsActivity">
 
@@ -42,7 +43,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="@dimen/dp16"
-                    app:fontFamily="@font/montserrat_medium">
+                    app:fontFamily="@font/montserrat_semibold">
                 </androidx.appcompat.widget.AppCompatTextView>
 
                 <View
@@ -67,7 +68,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="@dimen/dp14"
-                    app:fontFamily="@font/montserrat">
+                    app:fontFamily="@font/montserrat_medium">
 
                 </androidx.appcompat.widget.AppCompatTextView>
 
@@ -141,6 +142,7 @@
             </RelativeLayout>
         </androidx.core.widget.NestedScrollView>
     </com.google.android.material.card.MaterialCardView>
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_save"
         android:layout_width="match_parent"

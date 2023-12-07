@@ -4,6 +4,10 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/inc_toolbar_with_center_logo_toolbar"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -15,21 +19,41 @@
             android:id="@+id/aboutus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:gravity="center_horizontal"
-            android:text="Dashboard"
-            android:textColor="@color/purple_500"
+            android:text=""
+            android:layout_marginStart="@dimen/dp10"
+            android:textColor="@color/white"
             android:textSize="24dp"
-            app:fontFamily="@font/montserrat_semibold" />
+            app:fontFamily="@font/montserrat_semibold"/>
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/inc_toolbar_image"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="start"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/lin_tool"
             android:visibility="gone"
-            android:padding="@dimen/dp10"
-            android:src="@drawable/icon_actionbar_backbutton" />
+            android:layout_gravity="end"
+            android:padding="@dimen/dp10">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/inc_toolbar_event"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:visibility="gone"
+                android:layout_margin="@dimen/dp10"
+                android:padding="@dimen/dp2"
+                android:src="@drawable/icons8_bell_48_01"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/inc_toolbar_attachment"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:visibility="gone"
+                android:layout_margin="@dimen/dp10"
+                android:padding="@dimen/dp2"
+                android:src="@drawable/icons8_bell_48_03__1_"/>
+        </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
+    </RelativeLayout>
 </com.google.android.material.appbar.AppBarLayout>

@@ -130,14 +130,14 @@ class DescriptionActivity : AppCompatActivity() {
     }
 
 
-    class DBAsyncTask(val context: Context, val bookEntity: BookEntity, val mode: Int) :
+  /*  class DBAsyncTask(val context: Context, val bookEntity: BookEntity, val mode: Int) :
         AsyncTask<Void, Void, Boolean>() {
 
-        /*
+        *//*
         1-> Check if in favs or not
         2-> Save in favs
         3->Remove from favs
-         */
+         *//*
 
         //building database using the database class
         val db = Room.databaseBuilder(context, BookDatabase::class.java, DATABASE_NAME).build()
@@ -146,7 +146,7 @@ class DescriptionActivity : AppCompatActivity() {
 
             when (mode) {
                 1 -> {
-                    val book: BookEntity? = db.bookDao().getBookById(bookEntity.book_id)
+                    val book: BookEntity? = db.bookDao().getBookById(bookEntity.task_id)
                     db.close()
                     return book != null
                 }
@@ -170,7 +170,7 @@ class DescriptionActivity : AppCompatActivity() {
             return false
         }
     }
-
+*/
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             finish()

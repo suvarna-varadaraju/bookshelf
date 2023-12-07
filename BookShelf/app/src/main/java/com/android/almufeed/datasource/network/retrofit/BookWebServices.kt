@@ -5,6 +5,8 @@ import com.android.almufeed.datasource.network.models.attachment.AttachmentRespo
 import com.android.almufeed.datasource.network.models.attachment.GetAttachmentRequestModel
 import com.android.almufeed.datasource.network.models.attachment.GetAttachmentResponseModel
 import com.android.almufeed.datasource.network.models.events.GetEventListResponseModel
+import com.android.almufeed.datasource.network.models.events.SaveEventRequestModel
+import com.android.almufeed.datasource.network.models.events.SaveEventResponseModel
 import com.android.almufeed.datasource.network.models.instructionSet.InstructionSetRequestModel
 import com.android.almufeed.datasource.network.models.instructionSet.InstructionSetResponseModel
 import com.android.almufeed.datasource.network.models.login.LoginRequest
@@ -63,14 +65,23 @@ interface BookWebServices {
         @Header("Authorization") authToken: String,
     ): Response<GetEventListResponseModel>
 
-    @POST("getEventList")
+    @POST("setProblemRating")
     suspend fun setProblemRating(
         @Header("Authorization") authToken: String,
         @Body req: RatingRequestModel
     ): Response<RatingResponseModel>
 
+    @POST("setEventtoTask")
+    suspend fun setEventTask(
+        @Header("Authorization") authToken: String,
+        @Body req: SaveEventRequestModel
+    ): Response<SaveEventResponseModel>
+
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST("token")
     fun getProducts(@Body session: RequestBody): Call<CreateTokenResponse>
-
+    @Headers("Content-Type: application/json")
+    @POST("getTaskList")
+    fun getTaskListForNotification(
+        @Header("Authorization") authToken: String, @Body req: TaskListRequest): Call<TaskListResponse>
 }

@@ -5,51 +5,55 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/inc_toolbar_with_center_logo_toolbar"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/purple_500">
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/aboutus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="Dashboard"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            app:fontFamily="@font/montserrat_semibold"/>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/inc_toolbar_with_center_logo_toolbar"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/purple_500">
 
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:padding="@dimen/dp10">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/aboutus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text=""
+                android:layout_marginStart="@dimen/dp10"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:fontFamily="@font/montserrat_semibold"/>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/inc_toolbar_image"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+            <LinearLayout
+                android:id="@+id/lin_tool"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="end"
                 android:visibility="gone"
-                android:padding="@dimen/dp2"
-                android:src="@drawable/icon_actionbar_backbutton"/>
-        </FrameLayout>
+                android:padding="@dimen/dp10">
 
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:padding="@dimen/dp10">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/inc_toolbar_event"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_margin="@dimen/dp10"
+                    android:padding="@dimen/dp2"
+                    android:src="@drawable/icons8_bell_48_01"/>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/inc_toolbar_end"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:visibility="visible"
-                android:padding="@dimen/dp2"
-                android:src="@drawable/icon_actionbar_backbutton"/>
-        </FrameLayout>
-    </androidx.appcompat.widget.Toolbar>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/inc_toolbar_attachment"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_margin="@dimen/dp10"
+                    android:padding="@dimen/dp2"
+                    android:src="@drawable/icons8_bell_48_03__1_"/>
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </RelativeLayout>
+
+
 </com.google.android.material.appbar.AppBarLayout>

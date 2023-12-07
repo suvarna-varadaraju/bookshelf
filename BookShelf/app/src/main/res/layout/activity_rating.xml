@@ -145,6 +145,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_below="@+id/txt_1"
+                android:gravity="start"
+                android:inputType="textMultiLine"
                 android:layout_marginHorizontal="@dimen/dp18"
                 android:layout_marginStart="@dimen/dp10"
                 android:layout_marginTop="@dimen/dp10"

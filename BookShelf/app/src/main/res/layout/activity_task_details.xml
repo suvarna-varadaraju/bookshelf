@@ -31,6 +31,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.book.CardView"
+                android:id="@+id/card_details"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dp10"
+                android:padding="30dp"
+                app:strokeWidth="0dp">
+
             <LinearLayout
                 android:id="@+id/lin_task"
                 android:layout_width="match_parent"
@@ -49,7 +58,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="@dimen/dp16"
-                    app:fontFamily="@font/montserrat_semibold">
+                    app:fontFamily="@font/montserrat_medium">
                 </androidx.appcompat.widget.AppCompatTextView>
 
                 <View
@@ -111,12 +120,22 @@
                     app:fontFamily="@font/montserrat"
                     android:textSize="@dimen/dp14"/>
             </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.book.CardView"
+                android:id="@+id/card_contact"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/card_details"
+                android:layout_marginTop="@dimen/dp10"
+                android:padding="30dp"
+                app:strokeWidth="0dp">
 
             <LinearLayout
                 android:id="@+id/lin_contact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/lin_task"
                 android:layout_marginStart="@dimen/dp14"
                 android:layout_marginTop="@dimen/dp14"
                 android:layout_marginEnd="@dimen/dp14"
@@ -126,7 +145,6 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/toolbar"
                     android:text="Contact Details"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
@@ -146,7 +164,7 @@
                     android:id="@+id/txt_contactname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp20"
                     android:text="Name : test name"
                     app:fontFamily="@font/montserrat"
                     android:textAllCaps="false"
@@ -158,19 +176,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
+                    android:textColor="@color/black"
                     android:text="Mobile: 0552347623"
                     android:textAlignment="center"
                     android:textSize="@dimen/dp14"
                     app:fontFamily="@font/montserrat"/>
 
             </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.book.CardView"
+                android:id="@+id/card_address"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/card_contact"
+                android:layout_marginTop="@dimen/dp10"
+                android:padding="30dp"
+                app:strokeWidth="0dp">
 
             <LinearLayout
                 android:id="@+id/lin_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp14"
-                android:layout_below="@+id/lin_contact"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -197,7 +226,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Building : Test building"
-                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp20"
                     android:textAllCaps="false"
                     app:fontFamily="@font/montserrat"
                     android:textColor="@color/black"
@@ -215,12 +244,22 @@
                     android:textSize="@dimen/dp14"
                     style="@style/TextAppearance.MaterialComponents.Body1"/>
             </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.book.CardView"
+                android:id="@+id/card_attenddate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/card_address"
+                android:layout_marginTop="@dimen/dp10"
+                android:padding="30dp"
+                app:strokeWidth="0dp">
 
             <LinearLayout
                 android:id="@+id/lin_attenddate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/lin_address"
                 android:layout_marginStart="@dimen/dp14"
                 android:layout_marginTop="@dimen/dp14"
                 android:layout_marginEnd="@dimen/dp14"
@@ -250,7 +289,7 @@
                     android:id="@+id/txt_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp20"
                     android:text="Attened Date : 10/10/2023 08:51 AM"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
@@ -258,36 +297,57 @@
                     app:fontFamily="@font/montserrat" />
 
             </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.book.CardView"
+                android:id="@+id/card_status"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/card_attenddate"
+                android:layout_marginTop="@dimen/dp10"
+                android:padding="30dp"
+                app:strokeWidth="0dp">
 
             <LinearLayout
                 android:id="@+id/lin_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp14"
-                android:layout_below="@+id/lin_attenddate"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/txt_status"
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Current Status : "
+                    android:layout_below="@+id/toolbar"
+                    android:text="Current Status"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    app:fontFamily="@font/montserrat"
-                    android:textSize="@dimen/dp14"/>
+                    android:textSize="@dimen/dp16"
+                    app:fontFamily="@font/montserrat_medium">
+
+                </androidx.appcompat.widget.AppCompatTextView>
+
+                <View
+                    android:id="@+id/view_divide_status"
+                    android:layout_width="80dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="start"
+                    android:background="@color/purple_500"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/txt_action"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pending"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:text=""
                     android:textAllCaps="false"
                     android:textColor="@color/dark_gray"
                     app:fontFamily="@font/montserrat_medium"
                     android:textSize="@dimen/dp16"/>
 
             </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
 

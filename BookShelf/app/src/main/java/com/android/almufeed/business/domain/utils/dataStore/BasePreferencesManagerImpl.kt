@@ -22,6 +22,7 @@ class BasePreferencesManagerImpl constructor(
     companion object {
         val USER_LOGIN_STATUS = booleanPreferencesKey("user_login_status")
         val ACCESS_TOKEN = stringPreferencesKey("access_token")
+        val USER_NAME = stringPreferencesKey("user_name")
     }
 
     override suspend fun updateAccessToken(accessToken: String) {
@@ -59,6 +60,25 @@ class BasePreferencesManagerImpl constructor(
     override suspend fun setUserLogin(role: Boolean) {
         context.datastore.edit { preferences ->
             preferences[USER_LOGIN_STATUS] = role
+        }
+    }
+
+    override suspend fun getUserName()= context.datastore.data
+        .catch { exeption ->
+            if (exeption is IOException) {
+                Log.e(TAG, "Error reading preferences: ", exeption)
+                emit(emptyPreferences())
+            } else {
+                throw exeption
+            }
+        }
+        .map { preferences ->
+            preferences[USER_NAME] ?: ""
+        }
+
+    override suspend fun updateUserName(userName: String) {
+        context.datastore.edit { preferences ->
+            preferences[USER_NAME] = userName
         }
     }
 }

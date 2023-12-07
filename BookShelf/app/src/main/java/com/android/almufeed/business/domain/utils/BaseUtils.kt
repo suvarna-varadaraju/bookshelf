@@ -5,6 +5,8 @@ import android.content.Context
 import android.database.Cursor
 import android.graphics.*
 import android.media.ExifInterface
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
@@ -29,6 +31,7 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
+import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.time.OffsetDateTime
@@ -49,6 +52,23 @@ fun <T> AppCompatActivity.collectLatestFlow(flow: Flow<T>, collect: suspend (T) 
     }
 }
 
+fun isOnline(context: Context): Boolean {
+    val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        val n = cm.activeNetwork
+        if (n != null) {
+            val nc = cm.getNetworkCapabilities(n)
+            //It will check for both wifi and cellular network
+            return nc!!.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) || nc.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+        }
+        return false
+    } else {
+        val netInfo = cm.activeNetworkInfo
+        return netInfo != null && netInfo.isConnectedOrConnecting
+    }
+}
+
 @RequiresApi(Build.VERSION_CODES.O)
 fun formatDateOnly(date: String): String {
     val dateTime: ZonedDateTime = OffsetDateTime.parse(date).toZonedDateTime()
@@ -66,6 +86,54 @@ fun formatDateOnly(date: String): String {
     //val formatted: String = output.format(d)
 
     val formatted: String = defaultZoneTime.format(formatter)
+    Log.e("DATE::", "$formatted")
+    return formatted
+}
+
+fun getDate(dateStr: String?) {
+    try {
+        /** DEBUG dateStr = '2006-04-16T04:00:00Z' **/
+        val formatter = SimpleDateFormat("dd-MM-yyyy hh:mm a", Locale.ENGLISH)
+        val mDate = formatter.parse(dateStr) // this never ends while debugging
+        Log.e("mDate", mDate.toString())
+    } catch (e: Exception){
+        Log.e("mDate",e.toString()) // this never gets called either
+    }
+}
+
+fun dateFormater(oldFormat: String?): String? {
+    var convertedDate: String? = null
+    try {
+        val originalFormat: DateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm:ss", Locale.ENGLISH)
+        val targetFormat: DateFormat = SimpleDateFormat("dd-MM-yyyy  hh:mm a", Locale.ENGLISH)
+        val date: Date = originalFormat.parse(oldFormat)
+        convertedDate = targetFormat.format(date)
+    } catch (e: java.lang.Exception) {
+        e.printStackTrace()
+    }
+    return convertedDate
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun formatQcDate(date: String?): String {
+    val dateTime: ZonedDateTime = OffsetDateTime.parse(date).toZonedDateTime()
+    val defaultZoneTime: ZonedDateTime = dateTime.withZoneSameInstant(ZoneId.systemDefault())
+    val input = SimpleDateFormat("MM/dd/yyyy hh:mm:ss")
+    /*val output = SimpleDateFormat("dd-MM-yyyy hh:mm a")
+    output.timeZone = TimeZone.getTimeZone("GMT+5:30")*/
+
+    val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm a")
+
+    var d: Date? = null
+    try {
+        d = input.parse(date)
+    } catch (e: ParseException) {
+        e.printStackTrace()
+    }
+    //val formatted: String = output.format(d)
+
+    val formatted: String = defaultZoneTime.format(formatter)
+
     Log.e("DATE::", "$formatted")
     return formatted
 }

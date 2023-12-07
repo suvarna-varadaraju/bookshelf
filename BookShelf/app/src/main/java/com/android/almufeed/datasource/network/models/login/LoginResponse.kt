@@ -14,7 +14,7 @@ data class LoginResponse(
     @SerializedName("descipline")
     @Expose
     val descipline: String,
-    @SerializedName("Success")
+    @SerializedName("result")
     @Expose
     val Success: Boolean,
 )

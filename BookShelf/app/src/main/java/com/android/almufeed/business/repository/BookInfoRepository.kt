@@ -8,6 +8,8 @@ import com.android.almufeed.datasource.network.models.attachment.GetAttachmentRe
 import com.android.almufeed.datasource.network.models.attachment.GetAttachmentResponseModel
 import com.android.almufeed.datasource.network.models.bookList.BookListNetworkResponse
 import com.android.almufeed.datasource.network.models.events.GetEventListResponseModel
+import com.android.almufeed.datasource.network.models.events.SaveEventRequestModel
+import com.android.almufeed.datasource.network.models.events.SaveEventResponseModel
 import com.android.almufeed.datasource.network.models.instructionSet.InstructionSetRequestModel
 import com.android.almufeed.datasource.network.models.instructionSet.InstructionSetResponseModel
 import com.android.almufeed.datasource.network.models.login.LoginRequest
@@ -77,6 +79,13 @@ class BookInfoRepository @Inject constructor(
     suspend fun setRating(token: String,request: RatingRequestModel): Flow<DataState<RatingResponseModel>> =
         flow {
             bookNetworkDataSource.setRating(token,request).collect {
+                emit(it)
+            }
+        }
+
+    suspend fun setEvent(token: String,request: SaveEventRequestModel): Flow<DataState<SaveEventResponseModel>> =
+        flow {
+            bookNetworkDataSource.setEventTask(token,request).collect {
                 emit(it)
             }
         }
