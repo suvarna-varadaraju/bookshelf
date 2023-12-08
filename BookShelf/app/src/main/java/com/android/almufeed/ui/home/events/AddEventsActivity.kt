@@ -80,8 +80,10 @@ class AddEventsActivity : AppCompatActivity() {
 
             if(selectedImageType < 0){
                 Toast.makeText(this@AddEventsActivity,"Please select image type", Toast.LENGTH_SHORT).show()
+            }else if (binding.etDescription.text.toString().isNotEmpty()){
+                addEventsViewModel.saveForEvent(taskId,binding.etDescription.text.toString(),binding.spinnerType.selectedItem.toString())
             }else{
-                addEventsViewModel.saveForEvent(taskId,"comments",binding.spinnerType.selectedItem.toString())
+                Toast.makeText(this@AddEventsActivity,"Please give comments", Toast.LENGTH_SHORT).show()
             }
 
             /*val intent = Intent(this@AddAttachmentActivity, RatingActivity::class.java)

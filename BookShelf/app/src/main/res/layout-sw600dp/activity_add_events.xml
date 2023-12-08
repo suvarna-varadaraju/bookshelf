@@ -87,7 +87,6 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/dp16"
                     app:fontFamily="@font/montserrat">
-
                 </androidx.appcompat.widget.AppCompatTextView>
 
                 <androidx.appcompat.widget.AppCompatSpinner
@@ -130,13 +129,13 @@
                     android:layout_marginEnd="@dimen/dp10"
                     android:gravity="start"
                     android:inputType="textMultiLine"
-                    android:padding="@dimen/dp4"
+                    android:padding="@dimen/dp10"
+                    android:textSize="@dimen/dp18"
                     android:layout_marginBottom="@dimen/dp10"
-                    android:background="@drawable/rectangle"
+                    android:background="@drawable/layout_border"
                     android:hint=""
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/dp16"
                     app:fontFamily="@font/montserrat">
                 </androidx.appcompat.widget.AppCompatEditText>
             </RelativeLayout>

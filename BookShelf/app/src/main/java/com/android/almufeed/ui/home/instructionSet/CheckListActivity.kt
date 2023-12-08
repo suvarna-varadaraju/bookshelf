@@ -34,6 +34,9 @@ class CheckListActivity : AppCompatActivity(),InstructionRecyclerAdapter.OnItemC
     private lateinit var instructionRecyclerAdapter: InstructionRecyclerAdapter
     private lateinit var taskId : String
     private lateinit var pd : Dialog
+    companion object {
+        var btnPressed: Boolean = false
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,16 +93,23 @@ class CheckListActivity : AppCompatActivity(),InstructionRecyclerAdapter.OnItemC
                 val viewHolder = instructionRecyclerAdapter.createViewHolder(binding.recyclerTask, position)
                 instructionRecyclerAdapter.bindViewHolder(viewHolder, position)
 
-                val btnYesInFirstItem = viewHolder.binding.checklist.btnYes
-                val btnNoInFirstItem = viewHolder.binding.checklist.btnNo
-                val btnfreeTextInFirstItem = viewHolder.binding.etMessage.text.toString()
+                System.out.println("pressed " + btnPressed + "  "  + viewHolder.binding.etMessage.text.toString().isNotEmpty())
+                if(viewHolder.binding.etMessage.visibility == View.VISIBLE){
+                    if(btnPressed && viewHolder.binding.etMessage.text.toString().isNotEmpty()){
 
-                if(btnYesInFirstItem.isPressed || btnNoInFirstItem.isPressed || btnfreeTextInFirstItem.isNotEmpty()){
-
-                    //addEventsViewModel.saveForEvent(taskId,"comments","Instruction set completed")
+                        addEventsViewModel.saveForEvent(taskId,"comments","Instruction set completed")
+                    }else{
+                        pd.dismiss()
+                        Toast.makeText(this@CheckListActivity,"All Instruction set are mandatory", Toast.LENGTH_SHORT).show()
+                    }
                 }else{
-                    pd.dismiss()
-                    Toast.makeText(this@CheckListActivity,"All Instruction set are mandatory", Toast.LENGTH_SHORT).show()
+                    if(btnPressed){
+
+                        addEventsViewModel.saveForEvent(taskId,"comments","Instruction set completed")
+                    }else{
+                        pd.dismiss()
+                        Toast.makeText(this@CheckListActivity,"All Instruction set are mandatory", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         })

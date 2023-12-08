@@ -53,8 +53,8 @@ class DashboardActivity : AppCompatActivity() , BaseInterface {
             }
         }
 
-        val alarm = AlarmReceiver()
-        alarm.setAlarm(this)
+        /*val alarm = AlarmReceiver()
+        alarm.setAlarm(this)*/
     }
 
     override fun showNetworkSnackBar(isNetworkAvailable: Boolean) {

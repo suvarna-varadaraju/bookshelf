@@ -241,7 +241,7 @@
                 android:inputType="textMultiLine"
                 android:padding="@dimen/dp4"
                 android:layout_marginBottom="@dimen/dp10"
-                android:background="@drawable/rectangle"
+                android:background="@drawable/layout_border"
                 android:hint=""
                 android:textAllCaps="false"
                 android:textColor="@color/black"

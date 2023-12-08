@@ -39,7 +39,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 style="@style/TextAppearance.AppCompat.Headline"
-                android:text="@string/text_task"
+                android:text="No Attachment Found"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dp20"
                 android:visibility="gone"

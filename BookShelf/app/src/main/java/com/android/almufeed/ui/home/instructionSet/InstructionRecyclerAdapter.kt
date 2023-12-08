@@ -111,6 +111,7 @@ class InstructionRecyclerAdapter (val instructionList: InstructionSetResponseMod
                     binding.checklist.btnNo.setTextColor(context.getColor(R.color.black))
                     binding.checklist.btnNo.setBackgroundColor(context.getColor(R.color.white))
                    listener.onItemClick(currentItem.Refrecid, currentItem.FeedbackType,"Yes")
+                   CheckListActivity.btnPressed = true
                 })
 
                 binding.checklist.btnNo.setOnClickListener(View.OnClickListener { view ->
@@ -119,6 +120,7 @@ class InstructionRecyclerAdapter (val instructionList: InstructionSetResponseMod
                     binding.checklist.btnYes.setTextColor(context.getColor(R.color.black))
                     binding.checklist.btnYes.setBackgroundColor(context.getColor(R.color.white))
                     listener.onItemClick(currentItem.Refrecid, currentItem.FeedbackType,"No")
+                    CheckListActivity.btnPressed = true
                 })
 
                /* itemView.rootView.setOnClickListener {
