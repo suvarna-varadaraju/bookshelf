@@ -239,6 +239,7 @@ class TaskDetailsActivity : AppCompatActivity(), BaseInterface {
             }.exhaustive
         }
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             finish()
@@ -256,6 +257,7 @@ class TaskDetailsActivity : AppCompatActivity(), BaseInterface {
             snack.show()
         }
     }
+
     override fun onResume() {
         super.onResume()
         pd = Dialog(this, android.R.style.Theme_Black)

@@ -12,5 +12,4 @@ abstract class BookDatabase : RoomDatabase() {
     companion object {
         val DATABASE_NAME: String = "Book_DB"
     }
-
 }
